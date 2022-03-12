@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --host",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "workspaces": [
@@ -29,5 +29,6 @@
     "typescript": "^4.6.2",
     "vite": "^2.8.6",
     "vue-tsc": "^0.29.8"
-  }
+  },
+  "packageManager": "pnpm@6.32.3"
 }
