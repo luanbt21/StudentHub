@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh Lpr fff">
-    <q-header elevated class="bg-primary text-white">
+    <q-header elevated class="bg-white text-white">
       <q-toolbar>
         <q-btn
           v-show="leftDrawerOpen == false"
@@ -11,18 +11,7 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>
-          <q-avatar>
-            <img :src="logo" />
-          </q-avatar>
-          Title
-        </q-toolbar-title>
-
-        <q-tabs align="center">
-          <q-route-tab to="/page1" label="Page One" />
-          <q-route-tab to="/page2" label="Page Two" />
-          <q-route-tab to="/page3" label="Page Three" />
-        </q-tabs>
+        <Navbar />
 
         <q-btn
           v-show="rightDrawerOpen == false"
@@ -61,8 +50,9 @@
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, ref } from "vue";
-import logo from '@/assets/5920.jpg'
+import { ref } from "vue";
+import logo from "@/assets/5920.jpg";
+import Navbar from "@/components/Navbar.vue";
 
 const leftDrawerOpen = ref(false);
 const rightDrawerOpen = ref(false);

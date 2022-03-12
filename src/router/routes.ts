@@ -18,6 +18,10 @@ const routes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: '/welcome',
+    component: () => import('@/views/Welcome.vue')
+  },
+  {
     path: '/:catchAll(.*)*',
     component: () => import('@/views/Error404.vue')
   }
