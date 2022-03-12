@@ -1,6 +1,6 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <router-view></router-view>
+  <h1 class="tw-text-3xl tw-font-bold tw-underline">Hello world!</h1>
+  <!-- <router-view></router-view> -->
 </template>

@@ -12,6 +12,7 @@ import '@quasar/extras/material-icons/material-icons.css'
 // import @quasar/extras/animate/fadeIn.css
 // import @quasar/extras/animate/fadeOut.css
 
+import './index.css'
 import 'quasar/src/css/index.sass'
 
 import App from './App.vue'
