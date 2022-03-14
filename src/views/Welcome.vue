@@ -16,11 +16,15 @@
       </div>
     </div>
 
-    <body class="-tw-translate-y-10 md:-tw-translate-y-24">
+    <q-page-container class="-tw-translate-y-20 md:-tw-translate-y-32">
       <Ads />
       <Intro />
       <CarouselSlide />
-    </body>
+    </q-page-container>
+
+    <q-footer class="bg-white text-black">
+      <AppFooter />
+    </q-footer>
   </q-layout>
 </template>
 
@@ -30,4 +34,5 @@ import homeImage from '@/assets/homeImage.jpg'
 import Ads from '../components/welcome/Ads.vue'
 import Intro from '@/components/welcome/Intro.vue'
 import CarouselSlide from '@/components/welcome/CarouselSlide.vue'
+import AppFooter from '@/components/AppFooter.vue'
 </script>
