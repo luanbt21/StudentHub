@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="hhh lpR fff">
     <q-header elevated class="bg-grey-5 q-px-lg transparent">
       <q-toolbar>
         <Navbar />
@@ -16,9 +16,10 @@
       </div>
     </div>
 
-    <body class="-tw-translate-y-10 md:-tw-translate-y-24" style="height: 200vh">
+    <body class="-tw-translate-y-10 md:-tw-translate-y-24">
       <Ads />
       <Intro />
+      <CarouselSlide />
     </body>
   </q-layout>
 </template>
@@ -28,4 +29,5 @@ import Navbar from '@/components/Navbar.vue'
 import homeImage from '@/assets/homeImage.jpg'
 import Ads from '../components/welcome/Ads.vue'
 import Intro from '@/components/welcome/Intro.vue'
+import CarouselSlide from '@/components/welcome/CarouselSlide.vue'
 </script>
