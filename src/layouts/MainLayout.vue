@@ -1,26 +1,12 @@
 <template>
-  <q-layout view="hHh Lpr fff">
+  <q-layout view="hhh Lpr fff">
     <q-header elevated class="bg-white text-white">
       <q-toolbar>
-        <q-btn
-          v-show="leftDrawerOpen == false"
-          dense
-          flat
-          round
-          icon="menu"
-          @click="toggleLeftDrawer"
-        />
+        <q-btn v-show="leftDrawerOpen == false" dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <Navbar />
 
-        <q-btn
-          v-show="rightDrawerOpen == false"
-          dense
-          flat
-          round
-          icon="menu"
-          @click="toggleRightDrawer"
-        />
+        <q-btn v-show="rightDrawerOpen == false" dense flat round icon="menu" @click="toggleRightDrawer" />
       </q-toolbar>
     </q-header>
 
@@ -36,32 +22,25 @@
       <router-view />
     </q-page-container>
 
-    <q-footer elevated class="bg-grey-8 text-white">
-      <q-toolbar>
-        <q-toolbar-title>
-          <q-avatar>
-            <img :src="logo" />
-          </q-avatar>
-          <div>Title</div>
-        </q-toolbar-title>
-      </q-toolbar>
+    <q-footer class="bg-white text-black">
+      <AppFooter />
     </q-footer>
   </q-layout>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import logo from "@/assets/5920.jpg";
-import Navbar from "@/components/Navbar.vue";
+import { ref } from 'vue'
+import AppFooter from '@/components/AppFooter.vue'
+import Navbar from '@/components/Navbar.vue'
 
-const leftDrawerOpen = ref(false);
-const rightDrawerOpen = ref(false);
+const leftDrawerOpen = ref(false)
+const rightDrawerOpen = ref(false)
 
 function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
+  leftDrawerOpen.value = !leftDrawerOpen.value
 }
 
 function toggleRightDrawer() {
-  rightDrawerOpen.value = !rightDrawerOpen.value;
+  rightDrawerOpen.value = !rightDrawerOpen.value
 }
 </script>
