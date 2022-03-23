@@ -14,7 +14,8 @@ const routes: RouteRecordRaw[] = [
         name: 'Page1',
         path: 'page1',
         component: () => import('@/views/Example.vue')
-      }
+      },
+
     ]
   },
   {
@@ -24,7 +25,11 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/:catchAll(.*)*',
     component: () => import('@/views/Error404.vue')
-  }
+  },
+  {
+    path: '/login',
+    component: () => import('@/views/Login.vue')
+  },
 ]
 
 export default routes

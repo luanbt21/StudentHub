@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { Quasar } from 'quasar'
-import {createPinia} from 'pinia'
+import { createPinia } from 'pinia'
 
 import '@quasar/extras/roboto-font-latin-ext/roboto-font-latin-ext.css'
 import '@quasar/extras/material-icons/material-icons.css'
@@ -19,6 +19,12 @@ import 'quasar/src/css/index.sass'
 import App from './App.vue'
 import router from './router'
 
+import { store, key, useStore } from './store'
+
+import { __baseURL } from './constant'
+import axios from 'axios'
+axios.defaults.baseURL = __baseURL
+
 const myApp = createApp(App)
 
 myApp.use(Quasar, {
@@ -28,5 +34,7 @@ myApp.use(Quasar, {
 myApp.use(createPinia())
 
 myApp.use(router)
+
+myApp.use(store, key)
 
 myApp.mount('#app')

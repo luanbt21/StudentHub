@@ -29,14 +29,74 @@
   <q-space />
 
   <div class="q-gutter-sm">
-    <q-btn color="secondary" label="Log in" />
-    <q-btn color="primary" label="Sign up" />
+    <q-btn v-if="!isLogin" to="/login" color="secondary" label="Log in" />
+    <q-btn v-if="!isLogin" color="primary" label="Sign up" />
+
+    <div v-if="isLogin" class="q-pa-xs">
+      <q-avatar>
+        <img :src="store.state.auth.image" />
+        <q-menu>
+          <div class="row no-wrap q-pa-md">
+            <div class="column">
+              <div class="text-h6 q-mb-md">Settings</div>
+              <q-toggle v-model="Profile" label="Profile" />
+              <q-toggle v-model="History" label="History" />
+            </div>
+
+            <q-separator vertical inset class="q-mx-lg" />
+
+            <div class="column items-center">
+              <q-avatar size="72px">
+                <img :src="store.state.auth.image" />
+              </q-avatar>
+
+              <div class="text-subtitle1 q-mt-md q-mb-xs">{{ store.state.auth.displayName }}</div>
+
+              <q-btn @click="handleClick" color="primary" label="Logout" push size="sm" v-close-popup />
+            </div>
+          </div>
+        </q-menu>
+      </q-avatar>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import logo from '@/assets/5920.jpg'
-import { ref } from 'vue'
+import { useStore } from '@/store/index'
+import { computed, onMounted, onUpdated, ref } from 'vue'
+import axios from 'axios'
+import { __baseURL } from '@/constant'
+const store = useStore()
+const handleClick = () => {
+  store.dispatch('auth/logout')
+}
+const isLogin = computed(() => store.state.auth.user)
 
+onUpdated(async () => {
+  if (isLogin.value) {
+    const token = computed(() => store.state.auth.token)
+    // console.log(token.value)
+    const headers = {
+      Authorization: `Bearer ${token.value}`
+    }
+    await axios.post(
+      '/news',
+      {
+        img: 'string',
+        tag: 'string',
+        title: 'string',
+        url: 'string',
+        content: 'string',
+        status: 'string'
+      },
+      {
+        headers
+      }
+    )
+  }
+})
 const text = ref('')
+const Profile = ref('')
+const History = ref('')
 </script>

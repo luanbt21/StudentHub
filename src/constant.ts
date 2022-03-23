@@ -1,0 +1,1 @@
+export const __baseURL = 'https://studenthub-backend-development.up.railway.app/api'

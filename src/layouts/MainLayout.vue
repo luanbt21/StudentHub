@@ -10,12 +10,66 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-      <!-- drawer content -->
+    <q-drawer
+      style="width: 240px !important; margin-left: 60px; border: 1px solid #ece6e6"
+      class="tw-bg-[#ece6e6]"
+      q-ml-md
+      show-if-above
+      v-model="leftDrawerOpen"
+      side="left"
+      bordered
+    >
+      <q-item clickable v-ripple class="tw-bg-white tw-text-center">
+        <q-item-section>
+          <q-item-label><span class="tw-text-lg">All questions</span></q-item-label>
+        </q-item-section>
+      </q-item>
+
+      <q-item clickable v-ripple class="tw-bg-white tw-text-center">
+        <q-item-section>
+          <q-item-label><span class="tw-text-lg">Documents</span></q-item-label>
+        </q-item-section>
+      </q-item>
+      <q-item clickable v-ripple class="tw-bg-white tw-text-center">
+        <q-item-section>
+          <q-item-label><span class="tw-text-lg">Find a tutor</span></q-item-label>
+        </q-item-section>
+      </q-item>
+      <q-item clickable v-ripple class="tw-bg-white tw-text-center">
+        <q-item-section>
+          <q-item-label><span class="tw-text-lg">Find a job</span></q-item-label>
+        </q-item-section>
+      </q-item>
+      <q-item clickable v-ripple class="tw-bg-white tw-text-center">
+        <q-item-section>
+          <q-item-label><span class="tw-text-lg">Request</span></q-item-label>
+        </q-item-section>
+      </q-item>
+      <q-item clickable v-ripple class="tw-bg-white tw-text-center">
+        <q-item-section>
+          <q-item-label><span class="tw-text-lg">Users</span></q-item-label>
+        </q-item-section>
+      </q-item>
     </q-drawer>
 
-    <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
+    <q-drawer class="q-pa-sm" show-if-above v-model="rightDrawerOpen" side="right" bordered>
       <!-- drawer content -->
+      <q-card class="my-card">
+        <q-card-section class="bg-grey-4 text-white row">
+          <div class="text-h6 text-grey-10">Interested Tags</div>
+          <q-btn class="q-ml-lg" rounded color="primary" size="sm">edit</q-btn>
+        </q-card-section>
+
+        <q-separator />
+
+        <q-card-actions align="right">
+          <q-btn flat>Action 1</q-btn>
+          <q-btn flat>Action 2</q-btn>
+          <q-btn flat>Action 2</q-btn>
+          <q-btn flat>Action 2</q-btn>
+          <q-btn flat>Action 2</q-btn>
+        </q-card-actions>
+      </q-card>
     </q-drawer>
 
     <q-page-container>
@@ -44,3 +98,9 @@ function toggleRightDrawer() {
   rightDrawerOpen.value = !rightDrawerOpen.value
 }
 </script>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+</style>
