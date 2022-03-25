@@ -12,7 +12,7 @@
         <h1 class="tw-mb-2 tw-text-2xl tw-font-bold md:tw-text-6xl lg:tw-text-8xl">
           Find the best answer to your question
         </h1>
-        <q-btn rounded outline size="lg" color="secondary" label="Get Start" />
+        <q-btn to="/" rounded outline size="lg" color="secondary" label="Get Start" />
       </div>
     </div>
 
