@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hhh Lpr fff">
-    <q-header elevated class="bg-white text-white">
+    <q-header reveal :reveal-offset="10000" elevated class="bg-white text-white">
       <q-toolbar>
         <q-btn v-show="leftDrawerOpen == false" dense flat round icon="menu" @click="toggleLeftDrawer" />
 
