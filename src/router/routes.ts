@@ -8,7 +8,12 @@ const routes: RouteRecordRaw[] = [
       {
         name: 'Home',
         path: '',
-        component: () => import('@/views/SampleView.vue')
+        component: () => import('@/views/InterestedQuestion.vue')
+      },
+      {
+        name: 'Profile',
+        path: 'profile',
+        component: () => import('@/views/Profile.vue')
       },
       {
         name: 'Page1',

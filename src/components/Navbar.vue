@@ -33,13 +33,13 @@
     <q-btn v-if="!isLogin" color="primary" label="Sign up" />
 
     <div v-if="isLogin" class="q-pa-xs">
-      <q-avatar>
+      <q-avatar rounded>
         <img :src="store.state.auth.image" />
         <q-menu>
           <div class="row no-wrap q-pa-md">
             <div class="column">
               <div class="text-h6 q-mb-md">Settings</div>
-              <q-toggle v-model="Profile" label="Profile" />
+              <q-toggle to="/profile" v-model="Profile" label="Profile" />
               <q-toggle v-model="History" label="History" />
             </div>
 

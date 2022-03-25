@@ -3,9 +3,9 @@ import { User } from '@/models/User'
 
 const apiUrl = 'users'
 
-export const getUserById = async (email: string): Promise<User> => {
+export const getUserByUid = async (uid: string): Promise<User> => {
     try {
-        const res = await axios.get(`${apiUrl}/${email}`)
+        const res = await axios.get(`${apiUrl}/${uid}`)
         return res.data
     } catch (error) {
         throw new Error('Failed to get user')
