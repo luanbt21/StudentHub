@@ -21,8 +21,9 @@ export type AnswerComment = {
   answerId: number
   userId: string
   content: string
-  createdAt: Date
-  updatedAt: Date
+  createdAt: Date | string
+  updatedAt: Date | string
+  facebookId: string | null
 }
 
 /**
@@ -48,8 +49,9 @@ export type Answer = {
   score: number
   deleted: boolean
   verify: boolean
-  createdAt: Date
-  updatedAt: Date
+  createdAt: Date | string
+  updatedAt: Date | string
+  facebookId: string | null
 }
 
 /**
@@ -61,8 +63,9 @@ export type QuestionComment = {
   questionId: number
   userId: string
   content: string
-  createdAt: Date
-  updatedAt: Date
+  createdAt: Date | string
+  updatedAt: Date | string
+  facebookId: string | null
 }
 
 /**
@@ -87,8 +90,9 @@ export type Question = {
   content: string
   score: number
   deleted: boolean
-  createdAt: Date
-  updatedAt: Date
+  createdAt: Date | string
+  updatedAt: Date | string
+  facebookId: string | null
 }
 
 /**
@@ -108,7 +112,7 @@ export type User = {
   uid: string
   reputation: number
   description: string | null
-  joiningDate: Date
+  joiningDate: Date | string
   displayName: string
   photoURL: string | null
   phoneNumber: string | null
@@ -1225,6 +1229,7 @@ export namespace Prisma {
     content: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    facebookId: string | null
   }
 
   export type AnswerCommentMaxAggregateOutputType = {
@@ -1234,6 +1239,7 @@ export namespace Prisma {
     content: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    facebookId: string | null
   }
 
   export type AnswerCommentCountAggregateOutputType = {
@@ -1243,6 +1249,7 @@ export namespace Prisma {
     content: number
     createdAt: number
     updatedAt: number
+    facebookId: number
     _all: number
   }
 
@@ -1264,6 +1271,7 @@ export namespace Prisma {
     content?: true
     createdAt?: true
     updatedAt?: true
+    facebookId?: true
   }
 
   export type AnswerCommentMaxAggregateInputType = {
@@ -1273,6 +1281,7 @@ export namespace Prisma {
     content?: true
     createdAt?: true
     updatedAt?: true
+    facebookId?: true
   }
 
   export type AnswerCommentCountAggregateInputType = {
@@ -1282,6 +1291,7 @@ export namespace Prisma {
     content?: true
     createdAt?: true
     updatedAt?: true
+    facebookId?: true
     _all?: true
   }
 
@@ -1384,6 +1394,7 @@ export namespace Prisma {
     content: string
     createdAt: Date
     updatedAt: Date
+    facebookId: string | null
     _count: AnswerCommentCountAggregateOutputType | null
     _avg: AnswerCommentAvgAggregateOutputType | null
     _sum: AnswerCommentSumAggregateOutputType | null
@@ -1412,6 +1423,7 @@ export namespace Prisma {
     content?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    facebookId?: boolean
     Answer?: boolean | AnswerArgs
     User?: boolean | UserArgs
   }
@@ -3050,6 +3062,7 @@ export namespace Prisma {
     verify: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    facebookId: string | null
   }
 
   export type AnswerMaxAggregateOutputType = {
@@ -3062,6 +3075,7 @@ export namespace Prisma {
     verify: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    facebookId: string | null
   }
 
   export type AnswerCountAggregateOutputType = {
@@ -3074,6 +3088,7 @@ export namespace Prisma {
     verify: number
     createdAt: number
     updatedAt: number
+    facebookId: number
     _all: number
   }
 
@@ -3100,6 +3115,7 @@ export namespace Prisma {
     verify?: true
     createdAt?: true
     updatedAt?: true
+    facebookId?: true
   }
 
   export type AnswerMaxAggregateInputType = {
@@ -3112,6 +3128,7 @@ export namespace Prisma {
     verify?: true
     createdAt?: true
     updatedAt?: true
+    facebookId?: true
   }
 
   export type AnswerCountAggregateInputType = {
@@ -3124,6 +3141,7 @@ export namespace Prisma {
     verify?: true
     createdAt?: true
     updatedAt?: true
+    facebookId?: true
     _all?: true
   }
 
@@ -3229,6 +3247,7 @@ export namespace Prisma {
     verify: boolean
     createdAt: Date
     updatedAt: Date
+    facebookId: string | null
     _count: AnswerCountAggregateOutputType | null
     _avg: AnswerAvgAggregateOutputType | null
     _sum: AnswerSumAggregateOutputType | null
@@ -3260,6 +3279,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    facebookId?: boolean
     Question?: boolean | QuestionArgs
     User?: boolean | UserArgs
     AnswerComment?: boolean | AnswerCommentFindManyArgs
@@ -4005,6 +4025,7 @@ export namespace Prisma {
     content: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    facebookId: string | null
   }
 
   export type QuestionCommentMaxAggregateOutputType = {
@@ -4014,6 +4035,7 @@ export namespace Prisma {
     content: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    facebookId: string | null
   }
 
   export type QuestionCommentCountAggregateOutputType = {
@@ -4023,6 +4045,7 @@ export namespace Prisma {
     content: number
     createdAt: number
     updatedAt: number
+    facebookId: number
     _all: number
   }
 
@@ -4044,6 +4067,7 @@ export namespace Prisma {
     content?: true
     createdAt?: true
     updatedAt?: true
+    facebookId?: true
   }
 
   export type QuestionCommentMaxAggregateInputType = {
@@ -4053,6 +4077,7 @@ export namespace Prisma {
     content?: true
     createdAt?: true
     updatedAt?: true
+    facebookId?: true
   }
 
   export type QuestionCommentCountAggregateInputType = {
@@ -4062,6 +4087,7 @@ export namespace Prisma {
     content?: true
     createdAt?: true
     updatedAt?: true
+    facebookId?: true
     _all?: true
   }
 
@@ -4164,6 +4190,7 @@ export namespace Prisma {
     content: string
     createdAt: Date
     updatedAt: Date
+    facebookId: string | null
     _count: QuestionCommentCountAggregateOutputType | null
     _avg: QuestionCommentAvgAggregateOutputType | null
     _sum: QuestionCommentSumAggregateOutputType | null
@@ -4192,6 +4219,7 @@ export namespace Prisma {
     content?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    facebookId?: boolean
     Question?: boolean | QuestionArgs
     User?: boolean | UserArgs
   }
@@ -5827,6 +5855,7 @@ export namespace Prisma {
     deleted: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    facebookId: string | null
   }
 
   export type QuestionMaxAggregateOutputType = {
@@ -5838,6 +5867,7 @@ export namespace Prisma {
     deleted: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    facebookId: string | null
   }
 
   export type QuestionCountAggregateOutputType = {
@@ -5849,6 +5879,7 @@ export namespace Prisma {
     deleted: number
     createdAt: number
     updatedAt: number
+    facebookId: number
     _all: number
   }
 
@@ -5872,6 +5903,7 @@ export namespace Prisma {
     deleted?: true
     createdAt?: true
     updatedAt?: true
+    facebookId?: true
   }
 
   export type QuestionMaxAggregateInputType = {
@@ -5883,6 +5915,7 @@ export namespace Prisma {
     deleted?: true
     createdAt?: true
     updatedAt?: true
+    facebookId?: true
   }
 
   export type QuestionCountAggregateInputType = {
@@ -5894,6 +5927,7 @@ export namespace Prisma {
     deleted?: true
     createdAt?: true
     updatedAt?: true
+    facebookId?: true
     _all?: true
   }
 
@@ -5998,6 +6032,7 @@ export namespace Prisma {
     deleted: boolean
     createdAt: Date
     updatedAt: Date
+    facebookId: string | null
     _count: QuestionCountAggregateOutputType | null
     _avg: QuestionAvgAggregateOutputType | null
     _sum: QuestionSumAggregateOutputType | null
@@ -6028,6 +6063,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    facebookId?: boolean
     User?: boolean | UserArgs
     Answer?: boolean | AnswerFindManyArgs
     QuestionComment?: boolean | QuestionCommentFindManyArgs
@@ -11205,7 +11241,8 @@ export namespace Prisma {
     userId: 'userId',
     content: 'content',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    facebookId: 'facebookId'
   };
 
   export type AnswerCommentScalarFieldEnum = (typeof AnswerCommentScalarFieldEnum)[keyof typeof AnswerCommentScalarFieldEnum]
@@ -11230,7 +11267,8 @@ export namespace Prisma {
     deleted: 'deleted',
     verify: 'verify',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    facebookId: 'facebookId'
   };
 
   export type AnswerScalarFieldEnum = (typeof AnswerScalarFieldEnum)[keyof typeof AnswerScalarFieldEnum]
@@ -11242,7 +11280,8 @@ export namespace Prisma {
     userId: 'userId',
     content: 'content',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    facebookId: 'facebookId'
   };
 
   export type QuestionCommentScalarFieldEnum = (typeof QuestionCommentScalarFieldEnum)[keyof typeof QuestionCommentScalarFieldEnum]
@@ -11266,7 +11305,8 @@ export namespace Prisma {
     score: 'score',
     deleted: 'deleted',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    facebookId: 'facebookId'
   };
 
   export type QuestionScalarFieldEnum = (typeof QuestionScalarFieldEnum)[keyof typeof QuestionScalarFieldEnum]
@@ -11329,7 +11369,8 @@ export namespace Prisma {
 
   export const AnswerCommentOrderByRelevanceFieldEnum: {
     userId: 'userId',
-    content: 'content'
+    content: 'content',
+    facebookId: 'facebookId'
   };
 
   export type AnswerCommentOrderByRelevanceFieldEnum = (typeof AnswerCommentOrderByRelevanceFieldEnum)[keyof typeof AnswerCommentOrderByRelevanceFieldEnum]
@@ -11344,7 +11385,8 @@ export namespace Prisma {
 
   export const AnswerOrderByRelevanceFieldEnum: {
     userId: 'userId',
-    content: 'content'
+    content: 'content',
+    facebookId: 'facebookId'
   };
 
   export type AnswerOrderByRelevanceFieldEnum = (typeof AnswerOrderByRelevanceFieldEnum)[keyof typeof AnswerOrderByRelevanceFieldEnum]
@@ -11352,7 +11394,8 @@ export namespace Prisma {
 
   export const QuestionCommentOrderByRelevanceFieldEnum: {
     userId: 'userId',
-    content: 'content'
+    content: 'content',
+    facebookId: 'facebookId'
   };
 
   export type QuestionCommentOrderByRelevanceFieldEnum = (typeof QuestionCommentOrderByRelevanceFieldEnum)[keyof typeof QuestionCommentOrderByRelevanceFieldEnum]
@@ -11368,7 +11411,8 @@ export namespace Prisma {
   export const QuestionOrderByRelevanceFieldEnum: {
     userId: 'userId',
     title: 'title',
-    content: 'content'
+    content: 'content',
+    facebookId: 'facebookId'
   };
 
   export type QuestionOrderByRelevanceFieldEnum = (typeof QuestionOrderByRelevanceFieldEnum)[keyof typeof QuestionOrderByRelevanceFieldEnum]
@@ -11423,6 +11467,7 @@ export namespace Prisma {
     content?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    facebookId?: StringNullableFilter | string | null
     Answer?: XOR<AnswerRelationFilter, AnswerWhereInput>
     User?: XOR<UserRelationFilter, UserWhereInput>
   }
@@ -11434,6 +11479,7 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
     Answer?: AnswerOrderByWithRelationAndSearchRelevanceInput
     User?: UserOrderByWithRelationAndSearchRelevanceInput
     _relevance?: AnswerCommentOrderByRelevanceInput
@@ -11441,6 +11487,7 @@ export namespace Prisma {
 
   export type AnswerCommentWhereUniqueInput = {
     id?: number
+    facebookId?: string
   }
 
   export type AnswerCommentOrderByWithAggregationInput = {
@@ -11450,6 +11497,7 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
     _count?: AnswerCommentCountOrderByAggregateInput
     _avg?: AnswerCommentAvgOrderByAggregateInput
     _max?: AnswerCommentMaxOrderByAggregateInput
@@ -11467,6 +11515,7 @@ export namespace Prisma {
     content?: StringWithAggregatesFilter | string
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    facebookId?: StringNullableWithAggregatesFilter | string | null
   }
 
   export type AnswerVoterWhereInput = {
@@ -11530,6 +11579,7 @@ export namespace Prisma {
     verify?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    facebookId?: StringNullableFilter | string | null
     Question?: XOR<QuestionRelationFilter, QuestionWhereInput>
     User?: XOR<UserRelationFilter, UserWhereInput>
     AnswerComment?: AnswerCommentListRelationFilter
@@ -11546,6 +11596,7 @@ export namespace Prisma {
     verify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
     Question?: QuestionOrderByWithRelationAndSearchRelevanceInput
     User?: UserOrderByWithRelationAndSearchRelevanceInput
     AnswerComment?: AnswerCommentOrderByRelationAggregateInput
@@ -11555,6 +11606,7 @@ export namespace Prisma {
 
   export type AnswerWhereUniqueInput = {
     id?: number
+    facebookId?: string
   }
 
   export type AnswerOrderByWithAggregationInput = {
@@ -11567,6 +11619,7 @@ export namespace Prisma {
     verify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
     _count?: AnswerCountOrderByAggregateInput
     _avg?: AnswerAvgOrderByAggregateInput
     _max?: AnswerMaxOrderByAggregateInput
@@ -11587,6 +11640,7 @@ export namespace Prisma {
     verify?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    facebookId?: StringNullableWithAggregatesFilter | string | null
   }
 
   export type QuestionCommentWhereInput = {
@@ -11599,6 +11653,7 @@ export namespace Prisma {
     content?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    facebookId?: StringNullableFilter | string | null
     Question?: XOR<QuestionRelationFilter, QuestionWhereInput>
     User?: XOR<UserRelationFilter, UserWhereInput>
   }
@@ -11610,6 +11665,7 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
     Question?: QuestionOrderByWithRelationAndSearchRelevanceInput
     User?: UserOrderByWithRelationAndSearchRelevanceInput
     _relevance?: QuestionCommentOrderByRelevanceInput
@@ -11617,6 +11673,7 @@ export namespace Prisma {
 
   export type QuestionCommentWhereUniqueInput = {
     id?: number
+    facebookId?: string
   }
 
   export type QuestionCommentOrderByWithAggregationInput = {
@@ -11626,6 +11683,7 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
     _count?: QuestionCommentCountOrderByAggregateInput
     _avg?: QuestionCommentAvgOrderByAggregateInput
     _max?: QuestionCommentMaxOrderByAggregateInput
@@ -11643,6 +11701,7 @@ export namespace Prisma {
     content?: StringWithAggregatesFilter | string
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    facebookId?: StringNullableWithAggregatesFilter | string | null
   }
 
   export type QuestionVoterWhereInput = {
@@ -11705,6 +11764,7 @@ export namespace Prisma {
     deleted?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    facebookId?: StringNullableFilter | string | null
     User?: XOR<UserRelationFilter, UserWhereInput>
     Answer?: AnswerListRelationFilter
     QuestionComment?: QuestionCommentListRelationFilter
@@ -11721,6 +11781,7 @@ export namespace Prisma {
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
     User?: UserOrderByWithRelationAndSearchRelevanceInput
     Answer?: AnswerOrderByRelationAggregateInput
     QuestionComment?: QuestionCommentOrderByRelationAggregateInput
@@ -11731,6 +11792,7 @@ export namespace Prisma {
 
   export type QuestionWhereUniqueInput = {
     id?: number
+    facebookId?: string
   }
 
   export type QuestionOrderByWithAggregationInput = {
@@ -11742,6 +11804,7 @@ export namespace Prisma {
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
     _count?: QuestionCountOrderByAggregateInput
     _avg?: QuestionAvgOrderByAggregateInput
     _max?: QuestionMaxOrderByAggregateInput
@@ -11761,6 +11824,7 @@ export namespace Prisma {
     deleted?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    facebookId?: StringNullableWithAggregatesFilter | string | null
   }
 
   export type TagWhereInput = {
@@ -12002,6 +12066,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Answer: AnswerCreateNestedOneWithoutAnswerCommentInput
     User: UserCreateNestedOneWithoutAnswerCommentInput
   }
@@ -12013,12 +12078,14 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type AnswerCommentUpdateInput = {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Answer?: AnswerUpdateOneRequiredWithoutAnswerCommentInput
     User?: UserUpdateOneRequiredWithoutAnswerCommentInput
   }
@@ -12030,6 +12097,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AnswerCommentCreateManyInput = {
@@ -12039,12 +12107,14 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type AnswerCommentUpdateManyMutationInput = {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AnswerCommentUncheckedUpdateManyInput = {
@@ -12054,6 +12124,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AnswerVoterCreateInput = {
@@ -12107,6 +12178,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Question: QuestionCreateNestedOneWithoutAnswerInput
     User: UserCreateNestedOneWithoutAnswerInput
     AnswerComment?: AnswerCommentCreateNestedManyWithoutAnswerInput
@@ -12123,6 +12195,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     AnswerComment?: AnswerCommentUncheckedCreateNestedManyWithoutAnswerInput
     AnswerVoter?: AnswerVoterUncheckedCreateNestedManyWithoutAnswerInput
   }
@@ -12134,6 +12207,7 @@ export namespace Prisma {
     verify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Question?: QuestionUpdateOneRequiredWithoutAnswerInput
     User?: UserUpdateOneRequiredWithoutAnswerInput
     AnswerComment?: AnswerCommentUpdateManyWithoutAnswerInput
@@ -12150,6 +12224,7 @@ export namespace Prisma {
     verify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     AnswerComment?: AnswerCommentUncheckedUpdateManyWithoutAnswerInput
     AnswerVoter?: AnswerVoterUncheckedUpdateManyWithoutAnswerInput
   }
@@ -12164,6 +12239,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type AnswerUpdateManyMutationInput = {
@@ -12173,6 +12249,7 @@ export namespace Prisma {
     verify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AnswerUncheckedUpdateManyInput = {
@@ -12185,12 +12262,14 @@ export namespace Prisma {
     verify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type QuestionCommentCreateInput = {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Question: QuestionCreateNestedOneWithoutQuestionCommentInput
     User: UserCreateNestedOneWithoutQuestionCommentInput
   }
@@ -12202,12 +12281,14 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type QuestionCommentUpdateInput = {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Question?: QuestionUpdateOneRequiredWithoutQuestionCommentInput
     User?: UserUpdateOneRequiredWithoutQuestionCommentInput
   }
@@ -12219,6 +12300,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type QuestionCommentCreateManyInput = {
@@ -12228,12 +12310,14 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type QuestionCommentUpdateManyMutationInput = {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type QuestionCommentUncheckedUpdateManyInput = {
@@ -12243,6 +12327,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type QuestionVoterCreateInput = {
@@ -12296,6 +12381,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     User: UserCreateNestedOneWithoutQuestionInput
     Answer?: AnswerCreateNestedManyWithoutQuestionInput
     QuestionComment?: QuestionCommentCreateNestedManyWithoutQuestionInput
@@ -12312,6 +12398,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Answer?: AnswerUncheckedCreateNestedManyWithoutQuestionInput
     QuestionComment?: QuestionCommentUncheckedCreateNestedManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterUncheckedCreateNestedManyWithoutQuestionInput
@@ -12325,6 +12412,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutQuestionInput
     Answer?: AnswerUpdateManyWithoutQuestionInput
     QuestionComment?: QuestionCommentUpdateManyWithoutQuestionInput
@@ -12341,6 +12429,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Answer?: AnswerUncheckedUpdateManyWithoutQuestionInput
     QuestionComment?: QuestionCommentUncheckedUpdateManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterUncheckedUpdateManyWithoutQuestionInput
@@ -12356,6 +12445,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type QuestionUpdateManyMutationInput = {
@@ -12365,6 +12455,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type QuestionUncheckedUpdateManyInput = {
@@ -12376,6 +12467,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TagCreateInput = {
@@ -12667,6 +12759,21 @@ export namespace Prisma {
     not?: NestedDateTimeFilter | Date | string
   }
 
+  export type StringNullableFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    search?: string
+    not?: NestedStringNullableFilter | string | null
+  }
+
   export type AnswerRelationFilter = {
     is?: AnswerWhereInput
     isNot?: AnswerWhereInput
@@ -12690,6 +12797,7 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
   }
 
   export type AnswerCommentAvgOrderByAggregateInput = {
@@ -12704,6 +12812,7 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
   }
 
   export type AnswerCommentMinOrderByAggregateInput = {
@@ -12713,6 +12822,7 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
   }
 
   export type AnswerCommentSumOrderByAggregateInput = {
@@ -12766,6 +12876,24 @@ export namespace Prisma {
     _count?: NestedIntFilter
     _min?: NestedDateTimeFilter
     _max?: NestedDateTimeFilter
+  }
+
+  export type StringNullableWithAggregatesFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter | string | null
+    _count?: NestedIntNullableFilter
+    _min?: NestedStringNullableFilter
+    _max?: NestedStringNullableFilter
   }
 
   export type AnswerVoterOrderByRelevanceInput = {
@@ -12853,6 +12981,7 @@ export namespace Prisma {
     verify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
   }
 
   export type AnswerAvgOrderByAggregateInput = {
@@ -12871,6 +13000,7 @@ export namespace Prisma {
     verify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
   }
 
   export type AnswerMinOrderByAggregateInput = {
@@ -12883,6 +13013,7 @@ export namespace Prisma {
     verify?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
   }
 
   export type AnswerSumOrderByAggregateInput = {
@@ -12912,6 +13043,7 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
   }
 
   export type QuestionCommentAvgOrderByAggregateInput = {
@@ -12926,6 +13058,7 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
   }
 
   export type QuestionCommentMinOrderByAggregateInput = {
@@ -12935,6 +13068,7 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
   }
 
   export type QuestionCommentSumOrderByAggregateInput = {
@@ -13036,6 +13170,7 @@ export namespace Prisma {
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
   }
 
   export type QuestionAvgOrderByAggregateInput = {
@@ -13052,6 +13187,7 @@ export namespace Prisma {
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
   }
 
   export type QuestionMinOrderByAggregateInput = {
@@ -13063,6 +13199,7 @@ export namespace Prisma {
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    facebookId?: SortOrder
   }
 
   export type QuestionSumOrderByAggregateInput = {
@@ -13107,21 +13244,6 @@ export namespace Prisma {
 
   export type TagSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type StringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    search?: string
-    not?: NestedStringNullableFilter | string | null
   }
 
   export type QuestionListRelationFilter = {
@@ -13179,24 +13301,6 @@ export namespace Prisma {
 
   export type UserSumOrderByAggregateInput = {
     reputation?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter | string | null
-    _count?: NestedIntNullableFilter
-    _min?: NestedStringNullableFilter
-    _max?: NestedStringNullableFilter
   }
 
   export type DocumentOrderByRelevanceInput = {
@@ -13318,6 +13422,10 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type AnswerUpdateOneRequiredWithoutAnswerCommentInput = {
@@ -13908,10 +14016,6 @@ export namespace Prisma {
     connect?: Enumerable<TagsOnUsersWhereUniqueInput>
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type AnswerUpdateManyWithoutUserInput = {
     create?: XOR<Enumerable<AnswerCreateWithoutUserInput>, Enumerable<AnswerUncheckedCreateWithoutUserInput>>
     connectOrCreate?: Enumerable<AnswerCreateOrConnectWithoutUserInput>
@@ -14201,6 +14305,21 @@ export namespace Prisma {
     not?: NestedDateTimeFilter | Date | string
   }
 
+  export type NestedStringNullableFilter = {
+    equals?: string | null
+    in?: Enumerable<string> | null
+    notIn?: Enumerable<string> | null
+    lt?: string
+    lte?: string
+    gt?: string
+    gte?: string
+    contains?: string
+    startsWith?: string
+    endsWith?: string
+    search?: string
+    not?: NestedStringNullableFilter | string | null
+  }
+
   export type NestedIntWithAggregatesFilter = {
     equals?: number
     in?: Enumerable<number>
@@ -14260,34 +14379,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter
   }
 
-  export type NestedBoolFilter = {
-    equals?: boolean
-    not?: NestedBoolFilter | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter = {
-    equals?: boolean
-    not?: NestedBoolWithAggregatesFilter | boolean
-    _count?: NestedIntFilter
-    _min?: NestedBoolFilter
-    _max?: NestedBoolFilter
-  }
-
-  export type NestedStringNullableFilter = {
-    equals?: string | null
-    in?: Enumerable<string> | null
-    notIn?: Enumerable<string> | null
-    lt?: string
-    lte?: string
-    gt?: string
-    gte?: string
-    contains?: string
-    startsWith?: string
-    endsWith?: string
-    search?: string
-    not?: NestedStringNullableFilter | string | null
-  }
-
   export type NestedStringNullableWithAggregatesFilter = {
     equals?: string | null
     in?: Enumerable<string> | null
@@ -14317,6 +14408,19 @@ export namespace Prisma {
     not?: NestedIntNullableFilter | number | null
   }
 
+  export type NestedBoolFilter = {
+    equals?: boolean
+    not?: NestedBoolFilter | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter = {
+    equals?: boolean
+    not?: NestedBoolWithAggregatesFilter | boolean
+    _count?: NestedIntFilter
+    _min?: NestedBoolFilter
+    _max?: NestedBoolFilter
+  }
+
   export type AnswerCreateWithoutAnswerCommentInput = {
     content: string
     score?: number
@@ -14324,6 +14428,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Question: QuestionCreateNestedOneWithoutAnswerInput
     User: UserCreateNestedOneWithoutAnswerInput
     AnswerVoter?: AnswerVoterCreateNestedManyWithoutAnswerInput
@@ -14339,6 +14444,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     AnswerVoter?: AnswerVoterUncheckedCreateNestedManyWithoutAnswerInput
   }
 
@@ -14398,6 +14504,7 @@ export namespace Prisma {
     verify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Question?: QuestionUpdateOneRequiredWithoutAnswerInput
     User?: UserUpdateOneRequiredWithoutAnswerInput
     AnswerVoter?: AnswerVoterUpdateManyWithoutAnswerInput
@@ -14413,6 +14520,7 @@ export namespace Prisma {
     verify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     AnswerVoter?: AnswerVoterUncheckedUpdateManyWithoutAnswerInput
   }
 
@@ -14462,6 +14570,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Question: QuestionCreateNestedOneWithoutAnswerInput
     User: UserCreateNestedOneWithoutAnswerInput
     AnswerComment?: AnswerCommentCreateNestedManyWithoutAnswerInput
@@ -14477,6 +14586,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     AnswerComment?: AnswerCommentUncheckedCreateNestedManyWithoutAnswerInput
   }
 
@@ -14536,6 +14646,7 @@ export namespace Prisma {
     verify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Question?: QuestionUpdateOneRequiredWithoutAnswerInput
     User?: UserUpdateOneRequiredWithoutAnswerInput
     AnswerComment?: AnswerCommentUpdateManyWithoutAnswerInput
@@ -14551,6 +14662,7 @@ export namespace Prisma {
     verify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     AnswerComment?: AnswerCommentUncheckedUpdateManyWithoutAnswerInput
   }
 
@@ -14600,6 +14712,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     User: UserCreateNestedOneWithoutQuestionInput
     QuestionComment?: QuestionCommentCreateNestedManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterCreateNestedManyWithoutQuestionInput
@@ -14615,6 +14728,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     QuestionComment?: QuestionCommentUncheckedCreateNestedManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterUncheckedCreateNestedManyWithoutQuestionInput
     TagsOnQuestions?: TagsOnQuestionsUncheckedCreateNestedManyWithoutQuestionInput
@@ -14668,6 +14782,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     User: UserCreateNestedOneWithoutAnswerCommentInput
   }
 
@@ -14677,6 +14792,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type AnswerCommentCreateOrConnectWithoutAnswerInput = {
@@ -14722,6 +14838,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutQuestionInput
     QuestionComment?: QuestionCommentUpdateManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterUpdateManyWithoutQuestionInput
@@ -14737,6 +14854,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     QuestionComment?: QuestionCommentUncheckedUpdateManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterUncheckedUpdateManyWithoutQuestionInput
     TagsOnQuestions?: TagsOnQuestionsUncheckedUpdateManyWithoutQuestionInput
@@ -14807,6 +14925,7 @@ export namespace Prisma {
     content?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    facebookId?: StringNullableFilter | string | null
   }
 
   export type AnswerVoterUpsertWithWhereUniqueWithoutAnswerInput = {
@@ -14842,6 +14961,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     User: UserCreateNestedOneWithoutQuestionInput
     Answer?: AnswerCreateNestedManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterCreateNestedManyWithoutQuestionInput
@@ -14857,6 +14977,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Answer?: AnswerUncheckedCreateNestedManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterUncheckedCreateNestedManyWithoutQuestionInput
     TagsOnQuestions?: TagsOnQuestionsUncheckedCreateNestedManyWithoutQuestionInput
@@ -14918,6 +15039,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutQuestionInput
     Answer?: AnswerUpdateManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterUpdateManyWithoutQuestionInput
@@ -14933,6 +15055,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Answer?: AnswerUncheckedUpdateManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterUncheckedUpdateManyWithoutQuestionInput
     TagsOnQuestions?: TagsOnQuestionsUncheckedUpdateManyWithoutQuestionInput
@@ -14984,6 +15107,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     User: UserCreateNestedOneWithoutQuestionInput
     Answer?: AnswerCreateNestedManyWithoutQuestionInput
     QuestionComment?: QuestionCommentCreateNestedManyWithoutQuestionInput
@@ -14999,6 +15123,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Answer?: AnswerUncheckedCreateNestedManyWithoutQuestionInput
     QuestionComment?: QuestionCommentUncheckedCreateNestedManyWithoutQuestionInput
     TagsOnQuestions?: TagsOnQuestionsUncheckedCreateNestedManyWithoutQuestionInput
@@ -15060,6 +15185,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutQuestionInput
     Answer?: AnswerUpdateManyWithoutQuestionInput
     QuestionComment?: QuestionCommentUpdateManyWithoutQuestionInput
@@ -15075,6 +15201,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Answer?: AnswerUncheckedUpdateManyWithoutQuestionInput
     QuestionComment?: QuestionCommentUncheckedUpdateManyWithoutQuestionInput
     TagsOnQuestions?: TagsOnQuestionsUncheckedUpdateManyWithoutQuestionInput
@@ -15165,6 +15292,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     User: UserCreateNestedOneWithoutAnswerInput
     AnswerComment?: AnswerCommentCreateNestedManyWithoutAnswerInput
     AnswerVoter?: AnswerVoterCreateNestedManyWithoutAnswerInput
@@ -15179,6 +15307,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     AnswerComment?: AnswerCommentUncheckedCreateNestedManyWithoutAnswerInput
     AnswerVoter?: AnswerVoterUncheckedCreateNestedManyWithoutAnswerInput
   }
@@ -15197,6 +15326,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     User: UserCreateNestedOneWithoutQuestionCommentInput
   }
 
@@ -15206,6 +15336,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type QuestionCommentCreateOrConnectWithoutQuestionInput = {
@@ -15325,6 +15456,7 @@ export namespace Prisma {
     verify?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    facebookId?: StringNullableFilter | string | null
   }
 
   export type QuestionCommentUpsertWithWhereUniqueWithoutQuestionInput = {
@@ -15353,6 +15485,7 @@ export namespace Prisma {
     content?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    facebookId?: StringNullableFilter | string | null
   }
 
   export type QuestionVoterUpsertWithWhereUniqueWithoutQuestionInput = {
@@ -15488,6 +15621,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Question: QuestionCreateNestedOneWithoutAnswerInput
     AnswerComment?: AnswerCommentCreateNestedManyWithoutAnswerInput
     AnswerVoter?: AnswerVoterCreateNestedManyWithoutAnswerInput
@@ -15502,6 +15636,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     AnswerComment?: AnswerCommentUncheckedCreateNestedManyWithoutAnswerInput
     AnswerVoter?: AnswerVoterUncheckedCreateNestedManyWithoutAnswerInput
   }
@@ -15520,6 +15655,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Answer: AnswerCreateNestedOneWithoutAnswerCommentInput
   }
 
@@ -15529,6 +15665,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type AnswerCommentCreateOrConnectWithoutUserInput = {
@@ -15569,6 +15706,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Answer?: AnswerCreateNestedManyWithoutQuestionInput
     QuestionComment?: QuestionCommentCreateNestedManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterCreateNestedManyWithoutQuestionInput
@@ -15583,6 +15721,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Answer?: AnswerUncheckedCreateNestedManyWithoutQuestionInput
     QuestionComment?: QuestionCommentUncheckedCreateNestedManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterUncheckedCreateNestedManyWithoutQuestionInput
@@ -15603,6 +15742,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Question: QuestionCreateNestedOneWithoutQuestionCommentInput
   }
 
@@ -15612,6 +15752,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type QuestionCommentCreateOrConnectWithoutUserInput = {
@@ -15739,6 +15880,7 @@ export namespace Prisma {
     deleted?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    facebookId?: StringNullableFilter | string | null
   }
 
   export type QuestionCommentUpsertWithWhereUniqueWithoutUserInput = {
@@ -15796,6 +15938,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     User: UserCreateNestedOneWithoutQuestionInput
     Answer?: AnswerCreateNestedManyWithoutQuestionInput
     QuestionComment?: QuestionCommentCreateNestedManyWithoutQuestionInput
@@ -15811,6 +15954,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
     Answer?: AnswerUncheckedCreateNestedManyWithoutQuestionInput
     QuestionComment?: QuestionCommentUncheckedCreateNestedManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterUncheckedCreateNestedManyWithoutQuestionInput
@@ -15849,6 +15993,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutQuestionInput
     Answer?: AnswerUpdateManyWithoutQuestionInput
     QuestionComment?: QuestionCommentUpdateManyWithoutQuestionInput
@@ -15864,6 +16009,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Answer?: AnswerUncheckedUpdateManyWithoutQuestionInput
     QuestionComment?: QuestionCommentUncheckedUpdateManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterUncheckedUpdateManyWithoutQuestionInput
@@ -16001,6 +16147,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type AnswerVoterCreateManyAnswerInput = {
@@ -16013,6 +16160,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutAnswerCommentInput
   }
 
@@ -16022,6 +16170,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AnswerCommentUncheckedUpdateManyWithoutAnswerCommentInput = {
@@ -16030,6 +16179,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AnswerVoterUpdateWithoutAnswerInput = {
@@ -16058,6 +16208,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type QuestionCommentCreateManyQuestionInput = {
@@ -16066,6 +16217,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type QuestionVoterCreateManyQuestionInput = {
@@ -16085,6 +16237,7 @@ export namespace Prisma {
     verify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutAnswerInput
     AnswerComment?: AnswerCommentUpdateManyWithoutAnswerInput
     AnswerVoter?: AnswerVoterUpdateManyWithoutAnswerInput
@@ -16099,6 +16252,7 @@ export namespace Prisma {
     verify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     AnswerComment?: AnswerCommentUncheckedUpdateManyWithoutAnswerInput
     AnswerVoter?: AnswerVoterUncheckedUpdateManyWithoutAnswerInput
   }
@@ -16112,12 +16266,14 @@ export namespace Prisma {
     verify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type QuestionCommentUpdateWithoutQuestionInput = {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutQuestionCommentInput
   }
 
@@ -16127,6 +16283,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type QuestionCommentUncheckedUpdateManyWithoutQuestionCommentInput = {
@@ -16135,6 +16292,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type QuestionVoterUpdateWithoutQuestionInput = {
@@ -16203,6 +16361,7 @@ export namespace Prisma {
     verify?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type AnswerCommentCreateManyUserInput = {
@@ -16211,6 +16370,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type AnswerVoterCreateManyUserInput = {
@@ -16227,6 +16387,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type QuestionCommentCreateManyUserInput = {
@@ -16235,6 +16396,7 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    facebookId?: string | null
   }
 
   export type QuestionVoterCreateManyUserInput = {
@@ -16254,6 +16416,7 @@ export namespace Prisma {
     verify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Question?: QuestionUpdateOneRequiredWithoutAnswerInput
     AnswerComment?: AnswerCommentUpdateManyWithoutAnswerInput
     AnswerVoter?: AnswerVoterUpdateManyWithoutAnswerInput
@@ -16268,6 +16431,7 @@ export namespace Prisma {
     verify?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     AnswerComment?: AnswerCommentUncheckedUpdateManyWithoutAnswerInput
     AnswerVoter?: AnswerVoterUncheckedUpdateManyWithoutAnswerInput
   }
@@ -16276,6 +16440,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Answer?: AnswerUpdateOneRequiredWithoutAnswerCommentInput
   }
 
@@ -16285,6 +16450,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AnswerVoterUpdateWithoutUserInput = {
@@ -16305,6 +16471,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Answer?: AnswerUpdateManyWithoutQuestionInput
     QuestionComment?: QuestionCommentUpdateManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterUpdateManyWithoutQuestionInput
@@ -16319,6 +16486,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Answer?: AnswerUncheckedUpdateManyWithoutQuestionInput
     QuestionComment?: QuestionCommentUncheckedUpdateManyWithoutQuestionInput
     QuestionVoter?: QuestionVoterUncheckedUpdateManyWithoutQuestionInput
@@ -16333,12 +16501,14 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type QuestionCommentUpdateWithoutUserInput = {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
     Question?: QuestionUpdateOneRequiredWithoutQuestionCommentInput
   }
 
@@ -16348,6 +16518,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facebookId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type QuestionVoterUpdateWithoutUserInput = {

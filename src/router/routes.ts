@@ -20,7 +20,14 @@ const routes: RouteRecordRaw[] = [
         path: 'page1',
         component: () => import('@/views/Example.vue')
       },
-
+      {
+        name: 'Question',
+        path: 'questions/:id',
+        component: () => import('@/views/Question.vue'),
+        props: route => ({
+          id: route.params.id
+        })
+      }
     ]
   },
   {
