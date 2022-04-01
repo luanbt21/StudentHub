@@ -7,7 +7,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         name: 'Home',
-        path: '',
+        path: 'home',
         component: () => import('@/views/InterestedQuestion.vue')
       },
       {
@@ -16,10 +16,16 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/Profile.vue')
       },
       {
+        name: 'FindQuestion',
+        path: 'FindQuestion',
+        component: () => import('@/views/FindQuestion.vue')
+      },
+      {
         name: 'Page1',
         path: 'page1',
         component: () => import('@/views/Example.vue')
       },
+
 
     ]
   },

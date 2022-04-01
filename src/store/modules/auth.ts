@@ -138,6 +138,8 @@ const unsub = onAuthStateChanged(auth, async (user) => {
     let image = user?.photoURL
     let userid = user?.uid
     let displayName = user?.displayName
+    console.log(user);
+
     store.commit('auth/setAuthIsReady', { authState, user, token, image, userid, displayName })
     // console.log(token);
 

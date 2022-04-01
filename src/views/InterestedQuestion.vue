@@ -1,75 +1,90 @@
 <template>
-  <div class="row tw-p-3 tw-mt-3">
-    <div class="col-9">
-      <p class="tw-antialiased tw-text-3xl">Interested Question</p>
+  <div class="tw-min-h-screen">
+    <div class="row tw-p-3 tw-mt-3">
+      <div class="col-9">
+        <p class="tw-antialiased tw-text-3xl">Interested Question</p>
+      </div>
+      <div class="col-3 tw-p-1">
+        <q-btn class="" color="primary" icon="help_outline" label="Ask Question" />
+      </div>
     </div>
-    <div class="col-3 tw-p-1">
-      <q-btn class="" color="primary" icon="help_outline" label="Ask Question" />
-    </div>
-  </div>
-  <hr />
-  <!--  frag -->
-  <div class="row tw-border-2 tw-p-2">
-    <div align="center" class="col col-md-2">
-      <q-card align="center" dark bordered class="bg-white my-card text-light-green-6 tw-w-24">
-        <q-card-section>
-          <div class="text-h6">3</div>
-        </q-card-section>
+    <hr />
+    <!--  frag -->
+    <div v-for="question in questions" :key="question.id">
+      <div :to="`questions/${question.id}`" class="row tw-border-2 tw-p-2">
+        <div align="center" class="col col-md-2">
+          <q-card align="center" dark bordered class="bg-white my-card text-light-green-6 tw-w-24">
+            <q-card-section>
+              <div class="text-h6">{{ question._count.Answer }}</div>
+            </q-card-section>
 
-        <q-separator size="3px" color="green-3" dark inset />
+            <q-separator size="3px" color="green-3" dark inset />
 
-        <div class="text-subtitle2">Answers</div>
-      </q-card>
-    </div>
-    <div class="col-6 col-md-10">
-      <p class="tw-text-[#0074CC] tw-text-lg">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque illum temporibus fugit porro ullam voluptas
-        atque, cum add odio aspernatur ea qui, dolore quo assumenda?
-      </p>
-      <div class="row">
-        <div class="col-8">
-          <q-btn rounded color="light-blue-1" size="sm">
-            <span class="tw-text-sky-800">tag</span>
-          </q-btn>
+            <div class="text-subtitle2">Answers</div>
+          </q-card>
         </div>
-        <div class="col-4">
-          <span>asked at 1/8/2022, 10:18:01 PM</span>
+        <div class="col-6 col-md-10">
+          <p class="tw-text-[#0074CC] tw-text-lg">
+            {{ question.content }}
+          </p>
+          <div class="row">
+            <div class="col-8">
+              <div class="tw-inline tw-ml-2" v-for="tag in question.TagsOnQuestions">
+                <q-btn rounded color="light-blue-1" size="sm">
+                  <span class="tw-text-sky-800">{{ tag.Tag.name }}</span>
+                </q-btn>
+              </div>
+            </div>
+            <div class="col-4">
+              <span>asked at {{ question.createdAt.toString() }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row tw-border-2 tw-p-2">
-    <div align="center" class="col col-md-2">
-      <q-card align="center" dark bordered class="bg-white my-card text-light-green-6 tw-w-24">
-        <q-card-section>
-          <div class="text-h6">3</div>
-        </q-card-section>
+    <div class="row tw-border-2 tw-p-2">
+      <div align="center" class="col col-md-2">
+        <q-card align="center" dark bordered class="bg-white my-card text-light-green-6 tw-w-24">
+          <q-card-section>
+            <div class="text-h6">3</div>
+          </q-card-section>
 
-        <q-separator size="3px" color="green-3" dark inset />
+          <q-separator size="3px" color="green-3" dark inset />
 
-        <div class="text-subtitle2">Answers</div>
-      </q-card>
-    </div>
-    <div class="col-6 col-md-10">
-      <p class="tw-text-[#0074CC] tw-text-lg">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque illum temporibus fugit porro ullam voluptas
-        atque, cum add odio aspernatur ea qui, dolore quo assumenda?
-      </p>
-      <div class="row">
-        <div class="col-8">
-          <q-btn rounded color="light-blue-1" size="sm">
-            <span class="tw-text-sky-800">tag</span>
-          </q-btn>
-        </div>
-        <div class="col-4">
-          <span>asked at 1/8/2022, 10:18:01 PM</span>
+          <div class="text-subtitle2">Answers</div>
+        </q-card>
+      </div>
+      <div class="col-6 col-md-10">
+        <p class="tw-text-[#0074CC] tw-text-lg">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque illum temporibus fugit porro ullam voluptas
+          atque, cum add odio aspernatur ea qui, dolore quo assumenda?
+        </p>
+        <div class="row">
+          <div class="col-8">
+            <q-btn rounded color="light-blue-1" size="sm">
+              <span class="tw-text-sky-800">tag</span>
+            </q-btn>
+          </div>
+          <div class="col-4">
+            <span>asked at 1/8/2022, 10:18:01 PM</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue'
+import { Question } from '@/models/Question'
+import { getQuestion } from '@/api/Question'
+
+const questions = ref<Question[]>([])
+onMounted(async () => {
+  questions.value = await getQuestion()
+  console.log(questions.value)
+})
+</script>
 
 <style>
 .q-card {

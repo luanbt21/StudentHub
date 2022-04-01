@@ -76,7 +76,7 @@ const error = ref('')
 const handleSubmit = async () => {
   try {
     await store.dispatch('auth/login')
-    router.push('/')
+    router.push('home')
   } catch (err) {
     error.value = 'oop! có lỗi xảy ra'
   }
