@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { Quasar } from 'quasar'
+import { Quasar, Notify } from 'quasar'
 import { createPinia } from 'pinia'
 
 import '@quasar/extras/roboto-font-latin-ext/roboto-font-latin-ext.css'
@@ -28,7 +28,9 @@ axios.defaults.baseURL = __baseURL
 const myApp = createApp(App)
 
 myApp.use(Quasar, {
-  plugins: {}, // import Quasar plugins and add here
+  plugins: {
+    Notify
+  },
 })
 
 myApp.use(createPinia())

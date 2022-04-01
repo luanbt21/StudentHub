@@ -27,6 +27,14 @@ const routes: RouteRecordRaw[] = [
       },
 
 
+      {
+        name: 'Question',
+        path: 'questions/:id',
+        component: () => import('@/views/Question.vue'),
+        props: route => ({
+          id: route.params.id
+        })
+      }
     ]
   },
   {

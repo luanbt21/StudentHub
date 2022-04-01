@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:host": "vite build --outDir ~/dist/"
   },
   "workspaces": [
     "."
@@ -14,6 +15,7 @@
     "@quasar/extras": "^1.13.0",
     "axios": "^0.26.1",
     "firebase": "^9.6.9",
+    "date-fns": "^2.28.0",
     "pinia": "^2.0.11",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14",
