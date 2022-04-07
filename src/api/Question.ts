@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-
-
 import { Answer, AnswerComment, AnswerVoter, Question, QuestionComment, QuestionVoter, Tag, User } from '@/model/prisma'
 
 const apiUrl = 'questions'
@@ -17,6 +15,23 @@ export type QuestionDetail = Question & {
     TagsOnQuestions: { Tag: Tag }[]
 }
 
+export type QuestionBase = Question & {
+    TagsOnQuestions: {
+        Tag: {
+            name: string;
+        };
+    }[]
+    _count: {
+        Answer: number;
+    }
+    User: {
+        uid: string;
+        displayName: string;
+        photoURL: string;
+    }
+
+}
+
 export const getQuestionById = async (id: string): Promise<QuestionDetail> => {
     try {
         const res = await axios.get(`${apiUrl}/${id}`)
@@ -26,11 +41,11 @@ export const getQuestionById = async (id: string): Promise<QuestionDetail> => {
     }
 }
 
-export const getQuestion = async (): Promise<Question[]> => {
+export const getQuestion = async (): Promise<QuestionBase[]> => {
     try {
         const res = await axios.get(`${apiUrl}`)
         return res.data
     } catch (error) {
-        throw new Error('Failed to get user')
+        throw new Error('Failed to get question')
     }
 }

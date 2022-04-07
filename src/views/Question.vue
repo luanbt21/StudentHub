@@ -1,5 +1,5 @@
 <template>
-  <div v-if="question" class="tw-p-4">
+  <div v-if="question" class="tw-p-4 tw-min-h-screen">
     <div class="tw-flex tw-mb-3 tw-place-content-between">
       <div>
         <h1 class="text-h4">

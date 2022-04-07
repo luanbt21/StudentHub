@@ -8,6 +8,7 @@ const routes: RouteRecordRaw[] = [
       {
         name: 'Home',
         path: 'home',
+        alias: '',
         component: () => import('@/views/InterestedQuestion.vue')
       },
       {
