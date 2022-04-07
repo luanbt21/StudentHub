@@ -1,18 +1,6 @@
 import axios from 'axios'
-import { Answer, AnswerComment, AnswerVoter, Question, QuestionComment, QuestionVoter, Tag, User } from '@/model/prisma'
-
+import { QuestionDetail } from '@/models/QuestionDetail'
 const apiUrl = 'questions'
-
-export type QuestionDetail = Question & {
-  User: User
-  Answer: (Answer & {
-    AnswerComment: AnswerComment[]
-    AnswerVoter: AnswerVoter[]
-  })[]
-  QuestionComment: QuestionComment[]
-  QuestionVoter: QuestionVoter[]
-  TagsOnQuestions: { Tag: Tag }[]
-}
 
 export const getQuestionById = async (id: string): Promise<QuestionDetail> => {
   try {

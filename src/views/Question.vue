@@ -45,36 +45,37 @@
             />
           </div>
 
-          <!-- TODO -->
-          <div v-if="user" class="row q-pr-xl">
-            <q-avatar rounded>
-              <q-img :src="(user.photoURL as string)" />
-            </q-avatar>
-            <div>
-              <q-btn flat dense no-caps :to="`/users/${question.userId}`"> {{ user.displayName }} </q-btn> <br />
-              <span> {{ user.reputation }} </span>
-            </div>
-          </div>
+          <UserSummary v-if="user" class="tw-bg-teal-100" :user="user" />
         </div>
+
+        <CommentsView :comments="question.QuestionComment" />
+        <div>
+          <q-btn flat dense no-caps label="Add a comment" @click="showEdit = !showEdit" />
+        </div>
+        <CommentEditor v-if="showEdit" @comment="pushComment" />
       </div>
     </div>
 
     <h5>{{ question.Answer.length }} Answers</h5>
 
-    <QuestionAnswer v-for="answer in question.Answer" v-bind="answer" />
+    <QuestionAnswer v-for="answer in question.Answer" :answer="answer" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { formatDistance } from 'date-fns'
 import { computed, onMounted, ref } from 'vue'
-
-import { QuestionDetail, getQuestionById } from '@/api/Question'
-import QuestionAnswer from '@/components/QuestionAnswer.vue'
-import { useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
+import { useRouter } from 'vue-router'
 import { User } from '@/model/prisma'
 import { getUserByUid } from '@/api/User'
+import { getQuestionById } from '@/api/Question'
+import { QuestionDetail } from '@/models/QuestionDetail'
+
+import QuestionAnswer from '@/components/QuestionAnswer.vue'
+import UserSummary from '@/components/UserSummary.vue'
+import CommentEditor from '@/components/CommentEditor.vue'
+import CommentsView from '@/components/CommentsView.vue'
 
 const props = defineProps<{
   id: string
@@ -92,6 +93,11 @@ const askedAt = computed(() => {
 })
 
 const user = ref<User>()
+
+const showEdit = ref(false)
+
+// TODO
+const pushComment = async (value: string) => {}
 
 onMounted(async () => {
   try {
