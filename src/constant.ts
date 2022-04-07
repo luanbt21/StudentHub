@@ -1,1 +1,1 @@
-export const __baseURL = 'https://studenthub-backend-development.up.railway.app/api'
+export const __baseURL = 'https://api.luanbt.live/api'
