@@ -18,7 +18,7 @@
         <div class="q-pa-md">
           <q-select
             filled
-            v-model="model"
+            v-model="tags"
             use-input
             use-chips
             multiple
@@ -31,58 +31,61 @@
           />
         </div>
         <div class="tw-h-7 tw-pt-8">
-          <q-btn size="md" class="tw-w-14" color="primary" label="Find question" />
+          <q-btn @click="handleSearch()" size="md" class="tw-w-14" color="primary" label="Find question" />
         </div>
       </div>
     </div>
-
-    <div class="row tw-border-2 tw-p-2 tw-mt-8 tw-rounded">
-      <div align="center" class="col col-md-2">
-        <q-card align="center" dark bordered class="bg-white my-card text-light-green-6 tw-w-24">
-          <q-card-section>
-            <div class="text-h6">200</div>
-          </q-card-section>
-
-          <q-separator size="3px" color="green-3" dark inset />
-
-          <div class="text-subtitle2">vote</div>
-        </q-card>
-      </div>
-      <div class="col-6 col-md-10">
-        <p class="tw-text-[#0074CC] tw-text-lg">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque illum temporibus fugit porro ullam voluptas
-          atque, cum add odio aspernatur ea qui, dolore quo assumenda
-        </p>
-        <div class="row">
-          <div class="col-8"></div>
-          <div class="col-4">
-            <span>answered at 1/8/2022, 10:18:01 PM</span>
-          </div>
-        </div>
-      </div>
+    <div id="questionSearch" class="tw-mt-9 tw-hidden">
+      <QuestionItem class="" :questions="questionss" />
+    </div>
+    <div align="center" id="fail" class="tw-mt-9 tw-text-lg tw-italic tw-hidden">
+      <span>not found</span>
+    </div>
+    <div align="center" id="typesomething" class="tw-mt-9 tw-text-lg tw-italic tw-hidden">
+      <span>type something to search</span>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { QSelect } from 'quasar'
-import { onUpdated, ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { QuestionBase, searchQuestionByTags } from '@/api/Question'
+import { getQuestion } from '@/api/Question'
+import QuestionItem from '@/components/question/questionItem.vue'
 
-const stringOptions = ['Google', 'Facebook', 'Twitter', 'Apple', 'Oracle']
+const stringOptions = ref<String[]>([])
 
-const filterOptions = ref(stringOptions)
+onMounted(async () => {
+  questions.value = await getQuestion()
+  questions.value.map(question => {
+    question.TagsOnQuestions.map(tag => {
+      stringOptions.value.push(tag.Tag.name)
+    })
+  })
+  // console.log(typeof tags.value)
+
+  // console.log(await searchQuestionByTags(undefined, 'python'))
+})
+
+const questions = ref<QuestionBase[]>([])
+const questionss = ref<QuestionBase[]>([])
+
+// const stringOptions = ['Google', 'Facebook', 'Twitter', 'Apple', 'Oracle']
+
+const filterOptions = ref(stringOptions.value)
 
 const text = ref('')
 
-const model = ref(null)
+const tags = ref<String[]>([])
 
 const createValue = (
   val: string,
   done: (item?: any, mode?: 'add' | 'add-unique' | 'toggle' | undefined) => void
 ): void => {
   if (val.length > 0) {
-    if (!stringOptions.includes(val)) {
-      stringOptions.push(val)
+    if (!stringOptions.value.includes(val)) {
+      stringOptions.value.push(val)
     }
     done(val, 'toggle')
   }
@@ -95,15 +98,34 @@ const filterFn = (
 ): void => {
   doneFn(() => {
     if (val === '') {
-      filterOptions.value = stringOptions
+      filterOptions.value = stringOptions.value
     } else {
       const needle = val.toLowerCase()
-      filterOptions.value = stringOptions.filter(v => v.toLowerCase().indexOf(needle) > -1)
+      filterOptions.value = stringOptions.value.filter(v => v.toLowerCase().indexOf(needle) > -1)
     }
   })
 }
 
 const showChannel = () => {
-  console.log(model.value)
+  console.log(tags.value)
+}
+const handleSearch = async () => {
+  let tagArr = ''
+  tags.value.forEach(tag => {
+    tagArr = tagArr + tag + ','
+  })
+
+  if (text.value != '' && tagArr != '') {
+    questionss.value = await searchQuestionByTags(`${text.value}`, `${tagArr}`)
+    document.getElementById('questionSearch')?.classList.remove('tw-hidden')
+  } else if (text.value == '' && tagArr != '') {
+    questionss.value = await searchQuestionByTags(undefined, `${tagArr}`)
+    document.getElementById('questionSearch')?.classList.remove('tw-hidden')
+  } else if (text.value != '' && tagArr == '') {
+    questionss.value = await searchQuestionByTags(`${text.value}`, undefined)
+    document.getElementById('questionSearch')?.classList.remove('tw-hidden')
+  } else {
+    document.getElementById('typesomething')?.classList.remove('tw-hidden')
+  }
 }
 </script>

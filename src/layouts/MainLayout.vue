@@ -19,7 +19,7 @@
       side="left"
       bordered
     >
-      <q-item to="home" clickable v-ripple class="tw-bg-white tw-text-center">
+      <q-item to="/home" clickable v-ripple class="tw-bg-white tw-text-center">
         <q-item-section>
           <q-item-label><span class="tw-text-lg">All questions</span></q-item-label>
         </q-item-section>
@@ -30,12 +30,12 @@
           <q-item-label><span class="tw-text-lg">Documents</span></q-item-label>
         </q-item-section>
       </q-item>
-      <q-item clickable v-ripple class="tw-bg-white tw-text-center">
+      <q-item :to="`/questions/1`" clickable v-ripple class="tw-bg-white tw-text-center">
         <q-item-section>
           <q-item-label><span class="tw-text-lg">Find a tutor</span></q-item-label>
         </q-item-section>
       </q-item>
-      <q-item to="FindQuestion" clickable v-ripple class="tw-bg-white tw-text-center">
+      <q-item to="/FindQuestion" clickable v-ripple class="tw-bg-white tw-text-center">
         <q-item-section>
           <q-item-label><span class="tw-text-lg">Find question</span></q-item-label>
         </q-item-section>

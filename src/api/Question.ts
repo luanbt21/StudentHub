@@ -49,3 +49,17 @@ export const getQuestion = async (): Promise<QuestionBase[]> => {
         throw new Error('Failed to get question')
     }
 }
+
+export const searchQuestionByTags = async (what?: string, tags?: string): Promise<QuestionBase[]> => {
+    try {
+        const res = await axios.get(`${apiUrl}`, {
+            params: {
+                what,
+                tags,
+            }
+        })
+        return res.data
+    } catch (error) {
+        throw new Error('Failed to get question')
+    }
+}
