@@ -62,12 +62,12 @@
 
         <q-separator />
 
-        <q-card-actions align="right">
-          <q-btn flat>Action 1</q-btn>
-          <q-btn flat>Action 2</q-btn>
-          <q-btn flat>Action 2</q-btn>
-          <q-btn flat>Action 2</q-btn>
-          <q-btn flat>Action 2</q-btn>
+        <q-card-actions class="tw-flex" align="right">
+          <div v-for="(tag, index) in stringOptions.slice(0, 7)">
+            <div :id="index.toString()" class="">
+              <q-btn @click="handleclick(index.toString())" flat>{{ tag }}</q-btn>
+            </div>
+          </div>
         </q-card-actions>
       </q-card>
     </q-drawer>
@@ -83,9 +83,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import AppFooter from '@/components/AppFooter.vue'
 import Navbar from '@/components/Navbar.vue'
+import { getQuestion, QuestionBase } from '@/api/Question'
 
 const leftDrawerOpen = ref(false)
 const rightDrawerOpen = ref(false)
@@ -97,6 +98,20 @@ function toggleLeftDrawer() {
 function toggleRightDrawer() {
   rightDrawerOpen.value = !rightDrawerOpen.value
 }
+
+const handleclick = (id: string) => {
+  document.getElementById(id)?.classList.add('tw-hidden')
+}
+const stringOptions = ref<String[]>([])
+const questions = ref<QuestionBase[]>([])
+onMounted(async () => {
+  questions.value = await getQuestion()
+  questions.value.map(question => {
+    question.TagsOnQuestions.map(tag => {
+      stringOptions.value.push(tag.Tag.name)
+    })
+  })
+})
 </script>
 
 <style>

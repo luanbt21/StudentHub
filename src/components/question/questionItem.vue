@@ -26,7 +26,7 @@
         </p>
         <div class="row tw-absolute tw-inset-x-0 tw-bottom-0">
           <div class="col-8">
-            <div class="tw-inline tw-ml-2" v-for="tag in question.TagsOnQuestions">
+            <div class="tw-inline tw-ml-2" :key="3" v-for="tag in question.TagsOnQuestions.slice(0, 4)">
               <q-btn :to="`/tags`" rounded color="light-blue-1" size="sm">
                 <span class="tw-text-sky-800">{{ tag.Tag.name }}</span>
               </q-btn>
