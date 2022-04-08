@@ -13,20 +13,21 @@
         next-icon="arrow_right"
         navigation-icon="radio_button_unchecked"
         navigation
+        padding
         arrows
         height="auto"
         class="bg-brown-5 shadow-1 rounded-borders"
       >
-        <q-carousel-slide name="style" class="column wrap flex-center">
+        <q-carousel-slide name="first4" class="column wrap flex-center">
           <h5>Top Tutor</h5>
-          <div class="row flex-center">
-            <TutorCard v-for="i in 4" :key="'k' + i" class="col-sm-10 col-md-5" />
+          <div class="row flex-center tw-w-full">
+            <TutorCard v-for="user in first4" :key="user.uid" :user="user" class="col-sm-10 col-md-5" />
           </div>
         </q-carousel-slide>
-        <q-carousel-slide name="style" class="column wrap flex-center">
+        <q-carousel-slide name="next4" class="column wrap flex-center">
           <h5>Top Tutor</h5>
-          <div class="row flex-center">
-            <TutorCard v-for="i in 4" :key="'none' + i" class="col-sm-10 col-md-5" />
+          <div class="row flex-center tw-w-full">
+            <TutorCard v-for="user in next4" :key="user.uid" :user="user" class="col-sm-10 col-md-5" />
           </div>
         </q-carousel-slide>
       </q-carousel>
@@ -35,10 +36,24 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import TutorCard from '../TutorCard.vue'
+import { User } from '@/models/User'
+import { getUsers } from '@/api/User'
 
-const slide = ref('style')
-const lorem =
-  'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.'
+const slide = ref('first4')
+
+const users = ref<User[]>()
+
+const first4 = computed(() => {
+  return users.value?.slice(0, 4)
+})
+
+const next4 = computed(() => {
+  return users.value?.slice(4, 8)
+})
+
+onMounted(async () => {
+  users.value = await getUsers()
+})
 </script>
