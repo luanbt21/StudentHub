@@ -39,8 +39,7 @@
           <div class="row no-wrap q-pa-md">
             <div class="column">
               <div class="text-h6 q-mb-md">Settings</div>
-              <q-toggle to="/profile" v-model="Profile" label="Profile" />
-              <q-toggle v-model="History" label="History" />
+              <q-btn to="/profile" icon="manage_accounts">Profile</q-btn>
             </div>
 
             <q-separator vertical inset class="q-mx-lg" />
@@ -78,17 +77,19 @@ onUpdated(async () => {
     const token = computed(() => store.state.auth.token)
     // console.log(token.value)
     const headers = {
-      Authorization: `Bearer ${token.value}`
+      Authorization: `Bearer${token.value}`
     }
     await axios.post(
-      '/news',
+      '/users/login',
       {
-        img: 'string',
-        tag: 'string',
-        title: 'string',
-        url: 'string',
-        content: 'string',
-        status: 'string'
+        uid: 'string',
+        reputation: 0,
+        description: ' My job is an engineer',
+        joiningDate: ' 2022-03-11T00:00:00.000Z',
+        displayName: 'hanguyenthu',
+        photoURL: null,
+        phoneNumber: null,
+        email: 'hanguyen@gmail13211.com'
       },
       {
         headers
