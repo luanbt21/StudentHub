@@ -5,36 +5,36 @@
         <p class="tw-antialiased tw-text-3xl">Interested Question</p>
       </div>
       <div class="col-3 tw-p-1">
-        <q-btn :to="`/tags`" class="" color="primary" icon="help_outline" label="Ask Question" />
+        <q-btn :to="`/tags`" color="primary" icon="help_outline" label="Ask Question" />
       </div>
     </div>
     <hr />
     <!--  frag -->
-    <div class="hover:tw-cursor-pointer" v-for="question in questions" :key="question.id">
+    <div v-for="question in questions" :key="question.id">
       <div :to="`/welcome`" class="row tw-border-2 tw-p-2 hover:tw-duration-500 hover:tw-bg-slate-200">
         <div align="center" class="col col-md-2">
-          <router-link :to="`/questions/${question.id}`">
-            <q-card
-              clickable
-              align="center"
-              dark
-              bordered
-              class="bg-white hover:tw-scale-105 my-card text-light-green-6 tw-w-24"
-            >
-              <q-card-section>
-                <div class="text-h6">{{ question._count.Answer }}</div>
-              </q-card-section>
+          <q-card
+            clickable
+            align="center"
+            dark
+            bordered
+            class="bg-white my-card text-light-green-6 tw-w-24"
+          >
+            <q-card-section>
+              <div class="text-h6">{{ question._count.Answer }}</div>
+            </q-card-section>
 
-              <q-separator size="3px" color="green-3" dark inset />
+            <q-separator size="3px" color="green-3" dark inset />
 
-              <div class="text-subtitle2">Answers</div>
-            </q-card>
-          </router-link>
+            <div class="text-subtitle2">Answers</div>
+          </q-card>
         </div>
         <div class="col-6 col-md-10 tw-relative">
-          <p class="tw-text-[#0074CC] tw-text-lg tw-mb-8">
-            {{ question.content }}
-          </p>
+          <router-link :to="`/questions/${question.id}`">
+            <p class="tw-text-[#0074CC] tw-text-lg tw-mb-8">
+              {{ question.title }}
+            </p>
+          </router-link>
           <div class="row tw-absolute tw-inset-x-0 tw-bottom-0">
             <div class="col-8">
               <div class="tw-inline tw-ml-2" v-for="tag in question.TagsOnQuestions">
