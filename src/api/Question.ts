@@ -50,12 +50,13 @@ export const getQuestion = async (): Promise<QuestionBase[]> => {
     }
 }
 
-export const searchQuestionByTags = async (what?: string, tags?: string): Promise<QuestionBase[]> => {
+export const searchQuestionByTags = async (what?: string, tags?: string, page?: number): Promise<QuestionBase[]> => {
     try {
         const res = await axios.get(`${apiUrl}`, {
             params: {
                 what,
                 tags,
+                page
             }
         })
         return res.data
