@@ -9,11 +9,15 @@ export interface User {
     photoURL: string;
     phoneNumber: string;
     email: string;
-    InterestedTag: any[];
+    InterestedTag: InterestedTag[];
     _count: Count;
 }
 
 export interface Count {
     Answer: number;
     Question: number;
+}
+
+export interface InterestedTag {
+    name: string
 }
