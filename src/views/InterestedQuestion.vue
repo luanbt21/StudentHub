@@ -13,13 +13,7 @@
     <div v-for="question in questions" :key="question.id">
       <div :to="`/welcome`" class="row tw-border-2 tw-p-2 hover:tw-duration-500 hover:tw-bg-slate-200">
         <div align="center" class="col col-md-2">
-          <q-card
-            clickable
-            align="center"
-            dark
-            bordered
-            class="bg-white my-card text-light-green-6 tw-w-24"
-          >
+          <q-card clickable align="center" dark bordered class="bg-white my-card text-light-green-6 tw-w-24">
             <q-card-section>
               <div class="text-h6">{{ question._count.Answer }}</div>
             </q-card-section>
@@ -59,11 +53,11 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref } from 'vue'
-import { QuestionBase } from '@/api/Question'
+import { onMounted, ref } from 'vue'
+import { Question } from '@/models/Question'
 import { getQuestion } from '@/api/Question'
 import { formatDistance } from 'date-fns'
-const questions = ref<QuestionBase[]>([])
+const questions = ref<Question[]>([])
 
 onMounted(async () => {
   questions.value = await getQuestion()

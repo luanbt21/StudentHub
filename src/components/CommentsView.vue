@@ -1,7 +1,7 @@
 <template>
   <div class="tw-mt-3 tw-border-b-2">
     <p class="tw-border-t-2" v-for="comment in comments" :key="comment.id">
-      {{ comment.content }}
+      <span v-html="comment.content"></span>
       -
       <q-btn color="primary" flat dense no-caps class="tw-mr-2" :href="`/users/${comment.User.uid}`"
         >{{ comment.User.displayName }}

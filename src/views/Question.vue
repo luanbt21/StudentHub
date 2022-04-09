@@ -52,7 +52,7 @@
         <div>
           <q-btn flat dense no-caps label="Add a comment" @click="showEdit = !showEdit" />
         </div>
-        <CommentEditor v-if="showEdit" @comment="pushComment" />
+        <CommentEditor v-if="showEdit" :sending="sendingComment" @comment="pushComment" />
       </div>
     </div>
 
@@ -65,12 +65,14 @@
 <script setup lang="ts">
 import { formatDistance } from 'date-fns'
 import { computed, onMounted, ref } from 'vue'
-import { useQuasar } from 'quasar'
+import { QBtn, useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
 import { User } from '@/model/prisma'
 import { getUserByUid } from '@/api/User'
 import { getQuestionById } from '@/api/Question'
 import { QuestionDetail } from '@/models/QuestionDetail'
+import { auth } from '@/firebase/firebaseConfig'
+import { postQuestionComment } from '@/api/Question'
 
 import QuestionAnswer from '@/components/QuestionAnswer.vue'
 import UserSummary from '@/components/UserSummary.vue'
@@ -95,9 +97,26 @@ const askedAt = computed(() => {
 const user = ref<User>()
 
 const showEdit = ref(false)
+const sendingComment = ref(false)
 
-// TODO
-const pushComment = async (value: string) => {}
+const pushComment = async (value: string) => {
+  if (!auth.currentUser) {
+    q.notify({ color: 'negative', position: 'top', message: 'You need login first', icon: 'report_problem' })
+    return
+  }
+  try {
+    sendingComment.value = true
+    const comment = await postQuestionComment(question.value?.id as number, value)
+    question.value?.QuestionComment.push(comment)
+    setTimeout(() => {
+      showEdit.value = !showEdit.value
+    }, 0)
+  } catch (error) {
+    q.notify('Failed to sent comment')
+  } finally {
+    sendingComment.value = true
+  }
+}
 
 onMounted(async () => {
   try {
