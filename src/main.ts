@@ -19,18 +19,27 @@ import 'quasar/src/css/index.sass'
 import App from './App.vue'
 import router from './router'
 
-import { store, key, useStore } from './store'
+import { store, key } from './store'
 
 import { __baseURL } from './constant'
 import axios from 'axios'
+import { auth } from '@/firebase/firebaseConfig'
 axios.defaults.baseURL = __baseURL
+
+const unsubscribe = auth.onAuthStateChanged(async user => {
+  unsubscribe()
+  if (user) {
+    const token = await user.getIdToken()
+    axios.defaults.headers.common['Authorization'] = 'Bearer' + token
+  }
+})
 
 const myApp = createApp(App)
 
 myApp.use(Quasar, {
   plugins: {
     Notify
-  },
+  }
 })
 
 myApp.use(createPinia())
