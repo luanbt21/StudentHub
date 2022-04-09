@@ -110,11 +110,11 @@ const pushComment = async (value: string) => {
     question.value?.QuestionComment.push(comment)
     setTimeout(() => {
       showEdit.value = !showEdit.value
-    }, 0)
+    })
   } catch (error) {
     q.notify('Failed to sent comment')
   } finally {
-    sendingComment.value = true
+    sendingComment.value = false
   }
 }
 
