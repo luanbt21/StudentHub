@@ -30,7 +30,7 @@ const unsubscribe = auth.onAuthStateChanged(async user => {
   unsubscribe()
   if (user) {
     const token = await user.getIdToken()
-    axios.defaults.headers.common['Authorization'] = 'Bearer' + token
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
   }
 })
 
