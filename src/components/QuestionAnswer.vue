@@ -11,15 +11,21 @@
       <p class="tw-min-h-[80px]">
         {{ answer.content }}
       </p>
-
-      <UserSummary v-if="user" class="tw-bg-teal-100" :user="user" />
+      <div class="row">
+        <div class="col tw-flex tw-items-start">
+          <EditOrDelete :userId="answer.userId" @delete="delAnswer" />
+        </div>
+        <UserSummary v-if="user" class="tw-bg-teal-100" :user="user">
+          answered {{ formatDistance(new Date(answer.createdAt), new Date(), { addSuffix: true }) }}
+        </UserSummary>
+      </div>
 
       <CommentsView :comments="answer.AnswerComment" />
 
       <div>
-        <q-btn flat dense no-caps label="Add a comment" @click="showEdit = !showEdit" />
+        <q-btn flat dense no-caps label="Add a comment" @click="showCommentEdit = !showCommentEdit" />
       </div>
-      <CommentEditor v-if="showEdit" :sending="sendingComment" @comment="pushComment" />
+      <CommentEditor v-if="showCommentEdit" :sending="sendingComment" @comment="pushComment" />
     </div>
   </div>
   <q-separator />
@@ -28,13 +34,15 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { auth } from '@/firebase/firebaseConfig'
+import { formatDistance } from 'date-fns'
 
 import { User } from '@/model/prisma'
 import { getUserByUid } from '@/api/User'
-import { postAnswerComment } from '@/api/Answer'
+import { deleteAnswer, postAnswerComment } from '@/api/Answer'
 import UserSummary from '@/components/UserSummary.vue'
 import CommentEditor from './CommentEditor.vue'
 import CommentsView from './CommentsView.vue'
+import EditOrDelete from '@/components/EditOrDelete.vue'
 
 import { Answer } from '@/models/QuestionDetail'
 import { QBtn, useQuasar } from 'quasar'
@@ -43,7 +51,15 @@ const q = useQuasar()
 const props = defineProps<{ answer: Answer }>()
 const user = ref<User>()
 
-const showEdit = ref(false)
+const delAnswer = async () => {
+  try {
+    await deleteAnswer(props.answer.id)
+  } catch (error) {
+    q.notify('Failed to delete answer')
+  }
+}
+
+const showCommentEdit = ref(false)
 const sendingComment = ref(false)
 
 const pushComment = async (value: string) => {
@@ -56,7 +72,7 @@ const pushComment = async (value: string) => {
     const comment = await postAnswerComment(props.answer.id as number, value)
     props.answer.AnswerComment.push(comment)
     setTimeout(() => {
-      showEdit.value = !showEdit.value
+      showCommentEdit.value = !showCommentEdit.value
     })
   } catch (error) {
     q.notify('Failed to sent comment')
