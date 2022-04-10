@@ -87,7 +87,7 @@ const actions = {
             // console.log(user)
             // console.log(user.uid)
             commit('setUser', { user, token, userid, image, displayName })
-            axios.defaults.headers.common['Authorization'] = 'Bearer' + token
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
         } else {
             throw new Error('could not complete login')
@@ -143,7 +143,7 @@ const unsub = onAuthStateChanged(auth, async (user) => {
     store.commit('auth/setAuthIsReady', { authState, user, token, image, userid, displayName })
     // console.log(token);
 
-    // axios.defaults.headers.common['Authorization'] = 'Bearer' + token
+    // axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
     unsub()
 })

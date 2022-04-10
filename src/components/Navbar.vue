@@ -77,7 +77,7 @@ onUpdated(async () => {
     const token = computed(() => store.state.auth.token)
     // console.log(token.value)
     const headers = {
-      Authorization: `Bearer${token.value}`
+      Authorization: `Bearer ${token.value}`
     }
     await axios.post(
       '/users/login',
