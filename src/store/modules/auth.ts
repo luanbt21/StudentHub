@@ -1,12 +1,10 @@
 import { auth } from '../../firebase/firebaseConfig'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
 import { Commit } from 'vuex'
 import { store } from '../index'
 import axios from 'axios'
-import * as firebase from 'firebase/app'
 
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
-import { stat } from 'fs'
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
 const provider = new GoogleAuthProvider()
 // const store = useStore()
@@ -161,13 +159,8 @@ const unsub = onAuthStateChanged(auth, async user => {
   let image = user?.photoURL
   let userid = user?.uid
   let displayName = user?.displayName
-  // console.log(user);
 
   store.commit('auth/setAuthIsReady', { authState, user, token, image, userid, displayName })
-  // console.log(token);
-
-  // axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
-  "".substr
   unsub()
 })
 
