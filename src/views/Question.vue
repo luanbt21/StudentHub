@@ -6,7 +6,7 @@
           {{ question.title }}
         </h1>
         <span> Asked </span>
-        <time :datetime="question.createdAt.toString()">
+        <time :datetime="question.createdAt">
           {{ askedAt }}
         </time>
       </div>
@@ -55,10 +55,13 @@
         <CommentEditor v-if="showEdit" :sending="sendingComment" @comment="pushComment" />
       </div>
     </div>
+    <q-separator />
 
-    <h5>{{ question.Answer.length }} Answers</h5>
+    <h5 v-if="question.Answer.length != 0">{{ question.Answer.length }} Answers</h5>
 
     <QuestionAnswer v-for="answer in question.Answer" :answer="answer" />
+
+    <TextEditor title="Your answer" btnLabel="POST YOU ANSWER" @send="pushAnswer" :sending="sendingAnswer" />
   </div>
 </template>
 
@@ -78,6 +81,8 @@ import QuestionAnswer from '@/components/QuestionAnswer.vue'
 import UserSummary from '@/components/UserSummary.vue'
 import CommentEditor from '@/components/CommentEditor.vue'
 import CommentsView from '@/components/CommentsView.vue'
+import TextEditor from '@/components/TextEditor.vue'
+import { postAnswer } from '@/api/Answer'
 
 const props = defineProps<{
   id: string
@@ -115,6 +120,23 @@ const pushComment = async (value: string) => {
     q.notify('Failed to sent comment')
   } finally {
     sendingComment.value = false
+  }
+}
+
+const sendingAnswer = ref(false)
+const pushAnswer = async (value: string) => {
+  if (!auth.currentUser) {
+    q.notify({ color: 'negative', position: 'top', message: 'You need login first', icon: 'report_problem' })
+    return
+  }
+  try {
+    sendingAnswer.value = true
+    await postAnswer(question.value?.id as number, value)
+    question.value = await getQuestionById(props.id)
+  } catch (error) {
+    q.notify('Failed to sent answer')
+  } finally {
+    sendingAnswer.value = false
   }
 }
 

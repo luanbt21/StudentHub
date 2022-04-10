@@ -1,20 +1,20 @@
 <template>
   <div class="tw-mt-3 tw-border-b-2">
-    <p class="tw-border-t-2" v-for="comment in comments" :key="comment.id">
-      <span v-html="comment.content"></span>
-      -
-      <q-btn color="primary" flat dense no-caps class="tw-mr-2" :href="`/users/${comment.User.uid}`"
-        >{{ comment.User.displayName }}
-      </q-btn>
-      <time :datetime="comment.createdAt"> {{ new Date(comment.createdAt).toLocaleString() }}</time>
-    </p>
+    <div class="tw-border-t-2 tw-mb-1" v-for="comment in comments" :key="comment.id">
+      <CommentView :comment="comment" @deleted="remove" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { QuestionComment, AnswerComment } from '@/models/QuestionDetail'
+import CommentView from '@/components/CommentView.vue'
 
 type Comment = QuestionComment | AnswerComment
+const props = defineProps<{ comments: Comment[] }>()
 
-defineProps<{ comments: Comment[] }>()
+const remove = (id: number) => {
+  const index = props.comments.findIndex(c => c.id === id)
+  props.comments.splice(index, 1)
+}
 </script>

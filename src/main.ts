@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { Quasar, Notify } from 'quasar'
+import { Quasar, Notify, Dialog } from 'quasar'
 import { createPinia } from 'pinia'
 
 import '@quasar/extras/roboto-font-latin-ext/roboto-font-latin-ext.css'
@@ -38,7 +38,8 @@ const myApp = createApp(App)
 
 myApp.use(Quasar, {
   plugins: {
-    Notify
+    Notify,
+    Dialog
   }
 })
 
