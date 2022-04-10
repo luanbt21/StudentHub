@@ -51,3 +51,12 @@ export const postQuestionComment = async (questionId: number, content: string): 
     throw error
   }
 }
+
+export const deleteQuestionComment = async (id: number) => {
+  try {
+    const res = await axios.delete(`${apiUrl}/comments/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
