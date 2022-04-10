@@ -17,6 +17,18 @@ export const postAnswerComment = async (answerId: number, content: string): Prom
   }
 }
 
+export const putAnswerComment = async (id: number, content: string): Promise<AnswerComment> => {
+  try {
+    const res = await axios.put(`${apiUrl}/comments/${id}`, {
+      userId: auth.currentUser?.uid,
+      content
+    })
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export const deleteAnswerComment = async (id: number) => {
   try {
     const res = await axios.delete(`${apiUrl}/comments/${id}`)
