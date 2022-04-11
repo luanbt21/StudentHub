@@ -72,3 +72,18 @@ export const deleteQuestionComment = async (id: number) => {
     throw error
   }
 }
+
+export const postQuestion = async (title: string, content: string, tags: string[]): Promise<Question> => {
+  try {
+    const res = await axios.post(`${apiUrl}`, {
+      userId: auth.currentUser?.uid,
+      title,
+      content,
+      tags
+    })
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+

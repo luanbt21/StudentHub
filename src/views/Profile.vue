@@ -93,8 +93,10 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { useStore } from '@/store/index'
-import { searchQuestionByTags, QuestionBase, getQuestionById, QuestionDetail } from '@/api/Question'
+import { searchQuestionByTags, getQuestionById } from '@/api/Question'
+import { Question as QuestionBase } from '@/models/Question'
 import QuestionItem from '@/components/question/questionItem.vue'
+import { QuestionDetail } from '@/models/QuestionDetail'
 const store = useStore()
 const model = ref(null)
 
@@ -105,46 +107,22 @@ const questions = ref<QuestionBase[]>([])
 const question = ref<QuestionDetail>()
 onMounted(async () => {
   question.value = await getQuestionById('253')
-  for (let index = 1; index < 7; index++) {
-    questions.value = questions.value.concat(await searchQuestionByTags(undefined, undefined, index))
+  for (let index = 1; index < 9; index++) {
+    questions.value = questions.value
+      .concat(await searchQuestionByTags(undefined, undefined, index))
+      .filter(question => {
+        console.log(question.User.uid)
+        return question.userId == store.state.auth.userid
+      })
   }
-  console.log(questions.value)
+  // console.log(questions.value)
 
-  questions.value = questions.value.filter(question => {
-    console.log(question.User.uid)
-    return question.userId == 'Ezw7LBtZn6cokkeszP5n7p8XiI12'
-  })
-  console.log(questions.value)
+  // questions.value = questions.value.filter(question => {
+  //   console.log(question.User.uid)
+  //   return question.userId == store.state.auth.userid
+  // })
+  // console.log(questions.value)
 })
-const heavyList = [
-  {
-    label: 'ahii'
-  },
-  {
-    label: '3'
-  },
-  {
-    label: '4'
-  },
-  {
-    label: '4'
-  },
-  {
-    label: '4'
-  },
-  {
-    label: '4'
-  },
-  {
-    label: '4'
-  },
-  {
-    label: '4'
-  },
-  {
-    label: '4'
-  }
-]
 </script>
 
 <style></style>

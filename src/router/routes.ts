@@ -22,6 +22,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/FindQuestion.vue')
       },
       {
+        name: 'AskQuestion',
+        path: 'askQuestion',
+        component: () => import('@/views/PostQuestion.vue')
+      },
+      {
         name: 'Page1',
         path: 'page1',
         component: () => import('@/views/Example.vue')

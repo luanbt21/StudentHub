@@ -11,7 +11,7 @@
         </time>
       </div>
       <div>
-        <q-btn color="primary" no-caps> Ask Question </q-btn>
+        <q-btn to="/askQuestion" color="primary" no-caps> Ask Question </q-btn>
       </div>
     </div>
     <q-separator />

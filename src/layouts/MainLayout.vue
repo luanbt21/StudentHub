@@ -25,9 +25,9 @@
         </q-item-section>
       </q-item>
 
-      <q-item clickable v-ripple class="tw-bg-white tw-text-center">
+      <q-item to="/askQuestion" clickable v-ripple class="tw-bg-white tw-text-center">
         <q-item-section>
-          <q-item-label><span class="tw-text-lg">Documents</span></q-item-label>
+          <q-item-label><span class="tw-text-lg">Ask Question</span></q-item-label>
         </q-item-section>
       </q-item>
       <q-item :to="`/questions/1`" clickable v-ripple class="tw-bg-white tw-text-center">
@@ -54,22 +54,24 @@
 
     <q-drawer class="q-pa-sm" show-if-above v-model="rightDrawerOpen" side="right" bordered>
       <!-- drawer content -->
-      <q-card class="my-card">
-        <q-card-section class="bg-grey-4 text-white row">
-          <div class="text-h6 text-grey-10">Interested Tags</div>
-          <q-btn class="q-ml-lg" rounded color="primary" size="sm">edit</q-btn>
-        </q-card-section>
+      <div v-show="store.state.auth.displayName">
+        <q-card class="my-card">
+          <q-card-section class="bg-grey-4 text-white row">
+            <div class="text-h6 text-grey-10">Interested Tags</div>
+            <q-btn class="q-ml-lg" rounded color="primary" size="sm">edit</q-btn>
+          </q-card-section>
 
-        <q-separator />
+          <q-separator />
 
-        <q-card-actions class="tw-flex" align="right">
-          <div v-for="(tag, index) in stringOptions.slice(0, 7)">
-            <div :id="index.toString()" class="">
-              <q-btn @click="handleclick(index.toString())" flat>{{ tag }}</q-btn>
+          <q-card-actions class="tw-flex" align="right">
+            <div v-for="(tag, index) in stringOptions.slice(0, 7)">
+              <div :id="index.toString()" class="">
+                <q-btn @click="handleclick(index.toString())" flat>{{ tag }}</q-btn>
+              </div>
             </div>
-          </div>
-        </q-card-actions>
-      </q-card>
+          </q-card-actions>
+        </q-card>
+      </div>
     </q-drawer>
 
     <q-page-container>
@@ -86,7 +88,10 @@
 import { onMounted, ref } from 'vue'
 import AppFooter from '@/components/AppFooter.vue'
 import Navbar from '@/components/Navbar.vue'
-import { getQuestion, QuestionBase } from '@/api/Question'
+import { useStore } from '@/store/index'
+import { getQuestion } from '@/api/Question'
+import { Question as QuestionBase } from '@/models/Question'
+const store = useStore()
 
 const leftDrawerOpen = ref(false)
 const rightDrawerOpen = ref(false)
