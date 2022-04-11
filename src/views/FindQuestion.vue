@@ -50,7 +50,8 @@
 <script lang="ts" setup>
 import { QSelect } from 'quasar'
 import { onMounted, ref } from 'vue'
-import { QuestionBase, searchQuestionByTags } from '@/api/Question'
+import { searchQuestionByTags } from '@/api/Question'
+import { Question as QuestionBase } from '@/models/Question'
 import { getQuestion } from '@/api/Question'
 import QuestionItem from '@/components/question/questionItem.vue'
 

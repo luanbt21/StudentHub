@@ -50,17 +50,27 @@
       </div>
     </div>
   </div>
+  <div class="q-pa-lg flex flex-center">
+    <q-pagination @update:model-value="handlepagechange(current)" v-model="current" :max="8" direction-links />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { Question } from '@/models/Question'
-import { getQuestion } from '@/api/Question'
+import { searchQuestionByTags } from '@/api/Question'
 import { formatDistance } from 'date-fns'
 const questions = ref<Question[]>([])
+const current = ref(1)
+const handlepagechange = async (current: number) => {
+  questions.value = await searchQuestionByTags(undefined, undefined, current)
+  computed(() => {
+    questions.value
+  })
+}
 
 onMounted(async () => {
-  questions.value = await getQuestion()
+  questions.value = await searchQuestionByTags(undefined, undefined, current.value)
 })
 </script>
 
