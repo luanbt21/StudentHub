@@ -22,7 +22,7 @@
     </div>
 
     <div class="col-6 col-md-6 tw-mt-6">
-      <span class="tw-uppercase tw-text-2xl tw-font-semibold">nguyen thuy giang</span>
+      <span class="tw-uppercase tw-text-2xl tw-font-semibold">{{ store.state.auth.displayName }}</span>
       <div class="tw-mt-6">
         <div class="tw-flex">
           <p class="tw-text-[#9199A1] tw-w-[100px]">Join</p>
@@ -30,11 +30,11 @@
         </div>
         <div class="tw-flex">
           <p class="tw-text-[#9199A1] tw-w-[100px]">Accout name</p>
-          <p class="">nguyenthuygiang@gmail.com</p>
+          <p class="">{{ auth.currentUser?.email }}</p>
         </div>
         <div class="tw-flex">
           <p class="tw-text-[#9199A1] tw-w-[100px]">Email/Phone</p>
-          <p class="">nguyenthuygiang@gmail.com</p>
+          <p class="">{{ auth.currentUser?.email }}</p>
         </div>
       </div>
     </div>
@@ -92,6 +92,7 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
+import { auth } from '@/firebase/firebaseConfig'
 import { useStore } from '@/store/index'
 import { searchQuestionByTags, getQuestionById } from '@/api/Question'
 import { Question as QuestionBase } from '@/models/Question'
