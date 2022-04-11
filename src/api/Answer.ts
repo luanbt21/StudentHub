@@ -51,6 +51,18 @@ export const postAnswer = async (questionId: number, content: string): Promise<A
   }
 }
 
+export const putAnswer = async (id: number, content: string): Promise<Answer> => {
+  try {
+    const res = await axios.put(`${apiUrl}/${id}`, {
+      content,
+      userId: auth.currentUser?.uid
+    })
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export const deleteAnswer = async (id: number) => {
   try {
     const res = await axios.delete(`${apiUrl}/${id}`)
