@@ -27,6 +27,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/PostQuestion.vue')
       },
       {
+        name: 'Users',
+        path: 'Users',
+        component: () => import('@/views/Users.vue')
+      },
+      {
         name: 'Page1',
         path: 'page1',
         component: () => import('@/views/Example.vue')
@@ -37,6 +42,15 @@ const routes: RouteRecordRaw[] = [
         name: 'Question',
         path: 'questions/:id',
         component: () => import('@/views/Question.vue'),
+        props: route => ({
+          id: route.params.id
+        })
+      },
+
+      {
+        name: 'UserProfile',
+        path: 'users/:id',
+        component: () => import('@/views/userProfiles.vue'),
         props: route => ({
           id: route.params.id
         })

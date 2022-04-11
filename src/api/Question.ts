@@ -87,3 +87,12 @@ export const postQuestion = async (title: string, content: string, tags: string[
   }
 }
 
+export const deleteQuestion = async (id: number) => {
+  try {
+    const res = await axios.delete(`${apiUrl}/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+

@@ -45,7 +45,7 @@
           <q-item-label><span class="tw-text-lg">Request</span></q-item-label>
         </q-item-section>
       </q-item>
-      <q-item clickable v-ripple class="tw-bg-white tw-text-center">
+      <q-item to="/Users" clickable v-ripple class="tw-bg-white tw-text-center">
         <q-item-section>
           <q-item-label><span class="tw-text-lg">Users</span></q-item-label>
         </q-item-section>

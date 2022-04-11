@@ -1,6 +1,10 @@
 <template>
   <div class="hover:tw-cursor-pointer" v-for="question in questions" :key="question.id">
-    <div :to="`/welcome`" class="row tw-border-2 tw-p-2 hover:tw-duration-500 hover:tw-bg-slate-200">
+    <div
+      :id="`${question.id}`"
+      :to="`/welcome`"
+      class="row tw-border-2 tw-p-2 hover:tw-duration-500 hover:tw-bg-slate-200"
+    >
       <div align="center" class="col col-md-2">
         <router-link :to="`/questions/${question.id}`">
           <q-card
@@ -33,12 +37,15 @@
             </div>
           </div>
           <div class="col-4">
-            <span
+            <span class="tw-mr-2"
               >asked at
               {{
                 formatDistance(new Date(question.createdAt), new Date(), { addSuffix: true, includeSeconds: true })
               }}</span
             >
+            <q-btn @click="delQuestion(question.id)" rounded text-color="yellow-1" color="red-14" size="sm">
+              <span class="tw-text-white">Del</span>
+            </q-btn>
           </div>
         </div>
       </div>
@@ -49,10 +56,22 @@
 <script lang="ts" setup>
 import { formatDistance } from 'date-fns'
 import { Question as QuestionBase } from '@/models/Question'
+import { deleteQuestion } from '@/api/Question'
+import { computed } from 'vue'
+import { useQuasar } from 'quasar'
 
 const props = defineProps<{
   questions: QuestionBase[]
 }>()
+const q = useQuasar()
+const delQuestion = async (value: number) => {
+  try {
+    await deleteQuestion(value)
+    window.location.reload()
+  } catch (error) {
+    q.notify('Failed to delete answer')
+  }
+}
 </script>
 
 <style>

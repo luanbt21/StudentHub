@@ -1,5 +1,5 @@
 <template>
-  <div class="row tw-mt-2">
+  <div class="row tw-mt-2 tw-min-h-screen">
     <div class="text-center q-mr-sm">
       <q-btn flat round icon="keyboard_arrow_up" /> <br />
       <q-btn flat disable> {{ answer.score }} </q-btn><br />

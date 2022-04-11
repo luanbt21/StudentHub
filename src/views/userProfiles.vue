@@ -3,7 +3,7 @@
     <div class="row tw-p-4">
       <div class="col-6 col-md-3">
         <q-avatar size="200px" rounded>
-          <img :src="store.state.auth.image" />
+          <img :src="(users?.photoURL as string)" />
         </q-avatar>
         <div class="tw-text-center tw-w-[150px] tw-ml-5 tw-mt-3">
           <q-file
@@ -23,7 +23,7 @@
       </div>
 
       <div class="col-6 col-md-6 tw-mt-6">
-        <span class="tw-uppercase tw-text-2xl tw-font-semibold">{{ store.state.auth.displayName }}</span>
+        <span class="tw-uppercase tw-text-2xl tw-font-semibold">{{ users?.displayName }}</span>
         <div class="tw-mt-6">
           <div class="tw-flex">
             <p class="tw-text-[#9199A1] tw-w-[100px]">Join</p>
@@ -31,11 +31,11 @@
           </div>
           <div class="tw-flex">
             <p class="tw-text-[#9199A1] tw-w-[100px]">Accout name</p>
-            <p class="">{{ auth.currentUser?.email }}</p>
+            <p class="">{{ users?.email }}</p>
           </div>
           <div class="tw-flex">
             <p class="tw-text-[#9199A1] tw-w-[100px]">Email/Phone</p>
-            <p class="">{{ auth.currentUser?.email }}</p>
+            <p class="">{{ users?.email }}</p>
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@
     <q-btn class="tw-m-5" rounded color="primary" size="md" label="Activate" />
     <!--  -->
     <p class="tw-uppercase tw-ml-2 tw-text-xl tw-font-semibold">Question({{ questions.length }})</p>
-    <div class="q-ma-md">
+    <div class="q-ma-md" v-show="questions.length != '0'">
       <q-scroll-area style="height: 600px">
         <QuestionItem class="" :questions="questions" />
       </q-scroll-area>
@@ -55,7 +55,7 @@
     <!-- answer -->
     <!--  -->
     <p class="tw-uppercase tw-ml-2 tw-text-xl tw-font-semibold">Answer({{ question?.Answer.length }})</p>
-    <div class="q-ma-md">
+    <div class="q-ma-md" v-show="question?.Answer.length != 0">
       <q-scroll-area style="height: 600px">
         <div v-for="answer in question?.Answer" class="q-py-xs">
           <q-item dense>
@@ -100,22 +100,28 @@ import { searchQuestionByTags, getQuestionById } from '@/api/Question'
 import { Question as QuestionBase } from '@/models/Question'
 import QuestionItem from '@/components/question/questionItem.vue'
 import { QuestionDetail } from '@/models/QuestionDetail'
+import { useRoute } from 'vue-router'
+import { User } from '@/model/prisma'
+import { getUserByUid } from '@/api/User'
 const store = useStore()
 const model = ref(null)
+const route = useRoute()
 
 const postAvata = () => {
   console.log(model.value)
 }
 const questions = ref<QuestionBase[]>([])
 const question = ref<QuestionDetail>()
+const users = ref<User>()
 onMounted(async () => {
   question.value = await getQuestionById('253')
+  users.value = await getUserByUid(`${route.params.id}`)
   for (let index = 1; index < 9; index++) {
     questions.value = questions.value
       .concat(await searchQuestionByTags(undefined, undefined, index))
       .filter(question => {
-        console.log(question.User.uid)
-        return question.userId == store.state.auth.userid
+        // console.log(question.User.uid)
+        return question.userId == route.params.id
       })
   }
   // console.log(questions.value)
