@@ -11,9 +11,9 @@
       <p class="tw-min-h-[80px]">
         {{ answer.content }}
       </p>
-      <div class="row">
-        <div class="col tw-flex tw-items-start">
-          <EditOrDelete :userId="answer.userId" @delete="delAnswer" />
+      <div class="row tw-items-start">
+        <div class="col tw-mr-2">
+          <EditOrDelete :userId="answer.userId" @delete="delAnswer" :put="updateAnswer" @edited="edited" />
         </div>
         <UserSummary v-if="user" class="tw-bg-teal-100" :user="user">
           answered {{ formatDistance(new Date(answer.createdAt), new Date(), { addSuffix: true }) }}
@@ -38,7 +38,7 @@ import { formatDistance } from 'date-fns'
 
 import { User } from '@/model/prisma'
 import { getUserByUid } from '@/api/User'
-import { deleteAnswer, postAnswerComment } from '@/api/Answer'
+import { deleteAnswer, putAnswer, postAnswerComment } from '@/api/Answer'
 import UserSummary from '@/components/UserSummary.vue'
 import CommentEditor from './CommentEditor.vue'
 import CommentsView from './CommentsView.vue'
@@ -57,6 +57,15 @@ const delAnswer = async () => {
   } catch (error) {
     q.notify('Failed to delete answer')
   }
+}
+
+const updateAnswer = async (value: string): Promise<Answer> => {
+  return await putAnswer(props.answer.id, value)
+}
+
+const edited = (data: Answer) => {
+  props.answer.content = data.content
+  props.answer.updatedAt = data.updatedAt
 }
 
 const showCommentEdit = ref(false)

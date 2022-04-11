@@ -12,12 +12,9 @@ import { useStore } from '@/store'
 import TextEditor from './TextEditor.vue'
 import { ref } from 'vue'
 
-import { QuestionComment, AnswerComment } from '@/models/QuestionDetail'
-type Comment = QuestionComment | AnswerComment
-
-const props = defineProps<{ userId: string; put: (value: string) => Promise<Comment> }>()
+const props = defineProps<{ userId: string; put: (value: string) => Promise<any> }>()
 const emit = defineEmits<{
-  (e: 'edited', comment: Comment): void
+  (e: 'edited', data: any): void
   (e: 'delete'): void
 }>()
 const $q = useQuasar()
@@ -29,13 +26,13 @@ const sending = ref(false)
 const send = async (value: string) => {
   try {
     sending.value = true
-    const comment = await props.put(value)
-    emit('edited', comment)
+    const data = await props.put(value)
+    emit('edited', data)
     setTimeout(() => {
       showEditor.value = false
     })
   } catch (error) {
-    $q.notify('Failed to put comment')
+    $q.notify('Failed to put')
   } finally {
     sending.value = false
   }
