@@ -47,8 +47,8 @@
 </template>
 
 <script lang="ts" setup>
-import { QuestionBase } from '@/api/Question'
 import { formatDistance } from 'date-fns'
+import { Question as QuestionBase } from '@/models/Question'
 
 const props = defineProps<{
   questions: QuestionBase[]
