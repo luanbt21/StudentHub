@@ -36,6 +36,14 @@ const routes: RouteRecordRaw[] = [
         path: 'page1',
         component: () => import('@/views/Example.vue')
       },
+      {
+        name: 'Tags',
+        path: 'tags/:name',
+        component: () => import('@/views/TagPage.vue'),
+        props: route => ({
+          name: route.params.name
+        })
+      },
 
 
       {
@@ -57,6 +65,16 @@ const routes: RouteRecordRaw[] = [
       }
     ]
   },
+
+  // {
+  //   name: 'Tag',
+  //   path: 'tags/:name',
+  //   component: () => import('@/views/TagPage.vue'),
+  //   props: route => ({
+  //     name: route.params.name
+  //   })
+  // },
+
   {
     path: '/welcome',
     component: () => import('@/views/Welcome.vue')
