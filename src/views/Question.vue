@@ -45,6 +45,10 @@
             />
           </div>
 
+          <div class="tw-mr-2">
+            <q-btn color="primary" icon="facebook" target="_blank" :href="question.facebookLink" label="facebook" />
+          </div>
+
           <UserSummary v-if="user" class="tw-bg-teal-100" :user="user" />
         </div>
 
