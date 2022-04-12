@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/welcome">
+  <router-link to="/">
     <q-toolbar-title :shrink="true" class="text-grey-8">
       <q-avatar>
         <img :src="logo" />

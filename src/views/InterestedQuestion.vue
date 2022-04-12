@@ -5,7 +5,7 @@
         <p class="tw-antialiased tw-text-3xl">Interested Question</p>
       </div>
       <div class="col-3 tw-p-1">
-        <q-btn :to="`/tags`" color="primary" icon="help_outline" label="Ask Question" />
+        <q-btn to="/askQuestion" color="primary" icon="help_outline" label="Ask Question" />
       </div>
     </div>
     <hr />

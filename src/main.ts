@@ -31,6 +31,8 @@ const unsubscribe = auth.onAuthStateChanged(async user => {
   if (user) {
     const token = await user.getIdToken()
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+  } else {
+    if (window.location.pathname === '/') router.push('/welcome')
   }
 })
 
