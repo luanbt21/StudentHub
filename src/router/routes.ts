@@ -37,6 +37,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/Example.vue')
       },
       {
+        name: 'Pagea',
+        path: 'pagea',
+        component: () => import('@/views/test.vue')
+      },
+      {
         name: 'Tags',
         path: 'tags/:name',
         component: () => import('@/views/TagPage.vue'),
@@ -62,7 +67,12 @@ const routes: RouteRecordRaw[] = [
         props: route => ({
           id: route.params.id
         })
-      }
+      },
+      {
+        name: 'RegisterTutorPage',
+        path: 'registerTutor',
+        component: () => import('@/views/RegisterTutorPage.vue')
+      },
     ]
   },
 

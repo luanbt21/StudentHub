@@ -33,6 +33,7 @@
     <q-btn v-if="!isLogin" color="primary" label="Sign up" />
 
     <div v-if="isLogin" class="q-pa-xs">
+      <div class="tw-text-slate-800 tw-text-xl tw-inline-block tw-relative tw-top-1 tw-right-4">{{user?.reputation}}</div>
       <q-avatar rounded>
         <img :src="store.state.auth.image" />
         <q-menu>
@@ -40,6 +41,7 @@
             <div class="column">
               <div class="text-h6 q-mb-md">Settings</div>
               <q-btn to="/profile" icon="manage_accounts">Profile</q-btn>
+              <q-btn to="/registerTutor" icon="format_size">Become Tutor</q-btn>
             </div>
 
             <q-separator vertical inset class="q-mx-lg" />
@@ -66,6 +68,8 @@ import { useStore } from '@/store/index'
 import { computed, onMounted, onUpdated, ref } from 'vue'
 import axios from 'axios'
 import { __baseURL } from '@/constant'
+import { User } from '@/models/User'
+import { getUserByUid } from '@/api/User'
 const store = useStore()
 const handleClick = () => {
   store.dispatch('auth/logout')
@@ -75,7 +79,8 @@ const isLogin = computed(() => store.state.auth.user)
 onUpdated(async () => {
   if (isLogin.value) {
     const token = computed(() => store.state.auth.token)
-    // console.log(token.value)
+    user.value = await getUserByUid(store.state.auth.userid)
+    console.log(user.value.reputation)
     const headers = {
       Authorization: `Bearer ${token.value}`
     }
@@ -100,4 +105,5 @@ onUpdated(async () => {
 const text = ref('')
 const Profile = ref('')
 const History = ref('')
+const user = ref<User>()
 </script>

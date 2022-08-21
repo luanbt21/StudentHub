@@ -22,6 +22,8 @@
         </div>
       </div>
 
+      <div class="bg-gradient-to-r from-green-400 to-blue-500"></div>
+
       <div class="col-6 col-md-6 tw-mt-6">
         <span class="tw-uppercase tw-text-2xl tw-font-semibold">{{ users?.displayName }}</span>
         <div class="tw-mt-6">
